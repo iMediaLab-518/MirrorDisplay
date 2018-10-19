@@ -42,20 +42,22 @@ body{
 }
 #suggestion div{
 	/*用来修饰的div*/
-	background: #7CB137;
-	width: 60%;
+	background: linear-gradient(to left,rgba(234,123,40,0.8),rgba(245,186,40,0.1));
+	width: 50%;
 	height: 40px;
-	border-radius: 50px 0 0 50px;
-	opacity: 0.5;
+	/*border-radius: 50px 0 0 50px;*/
+	/*opacity: 0.5;*/
 	position:absolute;
 	right: 0px;
 }
 #mirror{
 	height: 1000px;
+	margin-top: 10%;
+	margin-bottom: 10%;
 }
 #outer-mirror{
 	height: 90%;
-	margin:0 1%;
+	margin:0% 1%;
 	border:18px rgb(234,123,40) solid;
 }
 #inner-mirror{
