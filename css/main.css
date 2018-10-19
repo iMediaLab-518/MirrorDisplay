@@ -1,0 +1,76 @@
+body{
+	margin:0px;
+	padding: 0px;
+	width:1080px;
+	height:1920px;
+	background: #000;
+	color: #fff;
+	font-size: 50px;
+}
+
+#greeting{
+	text-align: center;
+	font-size:120%;
+	margin: 50px;
+}
+
+#time{
+	font-size: 150%;
+}
+#date{
+	font-size: 75%;
+}
+
+#city-temporary{
+	font-size: 80%;
+}
+#wea-other{
+	font-size: 60%;
+}
+#city{
+	font-size: 50%;
+}
+#sug-text{
+	width: 90%;
+	margin-left: 8%;
+}
+#suggestion{
+	margin: 5% 10% 10% 10%;
+	background: linear-gradient(to right,rgb(234,123,40),rgb(245,186,40));
+	border-radius: 60px 0 0 60px;
+	font-size: 60%;
+	padding: 20px 0px 20px 50px;
+}
+#suggestion div{
+	/*用来修饰的div*/
+	background: #7CB137;
+	width: 60%;
+	height: 40px;
+	border-radius: 50px 0 0 50px;
+	opacity: 0.5;
+	position:absolute;
+	right: 0px;
+}
+#mirror{
+	height: 1000px;
+}
+#outer-mirror{
+	height: 90%;
+	margin:0 1%;
+	border:18px rgb(234,123,40) solid;
+}
+#inner-mirror{
+	height: 100%;
+	transform: rotate(-10deg) ;
+	border: 18px #ffffff solid;
+}
+#body-info{
+	display: none;
+	transform: rotate(10deg);
+	margin-top: 0;
+}
+#scanning{
+	transform: rotate(10deg);
+	margin-top: 10%;
+	visibility: /*hidden*/;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>魔镜主页</title>
+	<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+	<div class="container">
+		<h1 id="greeting">扫码注册</h1>
+		<div class="row">
+			<div class="col-md-5">
+				<!-- 时间 -->
+				<div class="col-md-12">
+					<p id="time">07 : 05</p>
+				</div>
+				<!-- 日期 + 星期几 -->
+				<div class="col-md-10">
+					<p id="date">10月7日星期日</p>
+				</div>
+				<div class="col-md-12">
+					<!-- 城市 -->
+					<p><span class="glyphicon glyphicon-map-marker"></span><span id="city">***市</span></p>						
+				</div>		
+			</div> <!--datetime-->
+
+			<div class="col-md-7">
+				<!-- 天气图标 -->
+				<div class="col-md-4">
+					<img id="weather-icon" width="130px" src="../res/weather-icon/100.png" class="responsive-img">					
+				</div>
+				<!-- 主要天气指标 -->
+				<div class="col-md-8">
+					<!-- 温度 -->
+					<p id="city-temporary"><span>？温度？</span></p>
+					<!-- 描述文字 -->
+					<p id="wea-txt">？天气?</p>
+				</div>
+				<!-- 次要天气指标(换行) -->
+				<div class="col-md-12" id="wea-other">
+					<!--湿度-->
+					<div class="col-md-4">
+						<p><span class="glyphicon glyphicon glyphicon-tint"></span><span id="wea-hum">45.6</span></p>
+					</div>
+					<!-- 风 -->
+					<div class="col-md-5">
+						<p><span class="glyphicon glyphicon glyphicon-flag"></span><span id="wea-wind">北风 2级</span></p>
+					</div>
+					<!-- 空气质量 -->
+					<div class="col-md-3">
+						<p><span>pm2.5:</span><span id="wea-pm">16.6</span></p>
+					</div>
+				</div>
+			</div>
+		</div> <!--右侧天气-->
+	</div> <!-- row -->
+</div> <!-- container -->
+
+	<div id="suggestion" class="container">
+		<p id="sug-text">？出行建议出行建议出行建议出行建议出行建议出行建议出行建议出行建议出行建议出行建议出行建议出行建议出行建议出行建议出行建议？</p>
+		<div></div>
+	</div> <!-- suggestion -->
+
+	<div id="mirror" class="container">
+		<!-- 镜子区域 -->
+		<div id="outer-mirror" class="row">
+			<div id="inner-mirror">
+				<div id="scanning" class="col-md-offset-2 col-md-10">
+					<img src="../res/scanning.gif" class="img-responsive" alt="">
+				</div>
+				<div id="body-info" class="col-md-6">
+					<p>体重:<span id="weight">?</span></p>
+					<p>心率:<span id="heart">?</span></p>
+				</div>				
+			</div>
+					
+		</div>
+	</div> <!-- mirror -->
+
+<script src="../js/lib/jquery-3.3.1.min.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
