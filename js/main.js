@@ -120,7 +120,7 @@ function scanning(){
 	//扫描人脸
 	$.get("http://localhost:5000/login",res=>{
 		if(res.status==100){
-			if(out!=="unknown"){
+			if(res.out!=="unknown"){
 				current_user = res.out;
 				//清除interval
 				clearInterval(S_ID);
@@ -131,7 +131,7 @@ function scanning(){
 			}
 			else{
 				//未知用户
-				$("#greeting").text("新用户，请扫码进行注册");
+				$("#greeting").text("新用户您好，请扫码进行注册");
 			}
 		}
 		else if(res.status==301){
@@ -169,14 +169,22 @@ function getWeight(){
 		}
 	});
 }
+
 function fetchContent(){
-	fetchWeather();
-	fetchDateTime();
+	//每小时更新天气
+	W_ID = setInterval(() => {
+	  fetchWeather();
+	}, 1000*60*60);
+
+	//每分钟更新时间
+	D_ID = setInterval(() => {
+		fetchDateTime();
+	}, 1000*60);
 }
 
 fetchContent();
 
-//定时检测人脸
+//每10s检测人脸
 S_ID = setInterval(() => {
 	  scanning();
-	}, 10000);
+	}, 1000*10);
