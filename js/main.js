@@ -136,6 +136,10 @@ function scanning(){
 		}
 		else if(res.status==301){
 			//没有检测到人脸
+			scanning();
+		}
+		else{
+			scanning();
 		}
 	});
 
@@ -169,7 +173,6 @@ function getWeight(){
 		}
 	});
 }
-
 function fetchContent(){
 	fetchWeather();
 	//每小时更新天气
@@ -177,7 +180,7 @@ function fetchContent(){
 	  fetchWeather();
 	}, 1000*60*60);
 
-	
+
 	fetchDateTime();
 	//每分钟更新时间
 	D_ID = setInterval(() => {
@@ -188,6 +191,6 @@ function fetchContent(){
 fetchContent();
 
 //每10s检测人脸
-S_ID = setInterval(() => {
-	  scanning();
-	}, 1000*10);
+// S_ID = setInterval(() => {
+//	  scanning();
+// 	}, 1000*10);
