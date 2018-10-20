@@ -189,7 +189,7 @@ function fetchContent(){
 }
 
 fetchContent();
-
+scanning();
 //每10s检测人脸
 // S_ID = setInterval(() => {
 //	  scanning();
