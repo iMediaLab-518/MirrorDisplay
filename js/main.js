@@ -171,11 +171,14 @@ function getWeight(){
 }
 
 function fetchContent(){
+	fetchWeather();
 	//每小时更新天气
 	W_ID = setInterval(() => {
 	  fetchWeather();
 	}, 1000*60*60);
 
+	
+	fetchDateTime();
 	//每分钟更新时间
 	D_ID = setInterval(() => {
 		fetchDateTime();
