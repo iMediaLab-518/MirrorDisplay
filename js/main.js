@@ -53,9 +53,13 @@ function fetchWeather(){
 	//天气描述
 	$.get("http://localhost:5000/weather",data=>{
 		if(data.status==100){
-			//获取编码，映射图标
-			//$("#wea-icon").attr('src',"../res/weather-icon/"+??".png");
-			$("#wea-txt").text(data.out);
+			//示例data.out=["阴","d02"]
+
+			//获取编码，映射图标??????
+			//$("#wea-icon").attr('src',"../res/weather-icon/"+data.out[1]+".png");
+			
+			//获取描述文字
+			$("#wea-txt").text(data.out[0]);
 		}
 	});
 
@@ -125,7 +129,7 @@ function scanning(){
 				//清除interval
 				//clearInterval(S_ID);
 				//设置一个新的interval
-				
+
 				//登录
 				login(current_user);
 			}
