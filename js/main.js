@@ -123,9 +123,9 @@ function scanning(){
 			if(res.out!=="unknown"){
 				current_user = res.out;
 				//清除interval
-				clearInterval(S_ID);
+				//clearInterval(S_ID);
 				//设置一个新的interval
-
+				
 				//登录
 				login(current_user);
 			}
