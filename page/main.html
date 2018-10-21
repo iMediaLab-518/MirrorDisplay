@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/main.css">
 </head>
+
 <body>
 
 	<div class="container">
@@ -23,19 +25,25 @@
 				</div>
 				<div class="col-md-12">
 					<!-- 城市 -->
-					<p><span class="glyphicon glyphicon-map-marker"></span><span id="city">***市</span></p>						
-				</div>		
-			</div> <!--datetime-->
+					<p>
+						<span class="glyphicon glyphicon-map-marker"></span>
+						<span id="city">***市</span>
+					</p>
+				</div>
+			</div>
+			<!--datetime-->
 
 			<div class="col-md-7">
 				<!-- 天气图标 -->
 				<div class="col-md-4">
-					<img id="weather-icon" width="130px" src="../res/weather-icon/100.png" class="responsive-img">					
+					<img id="weather-icon" width="130px" src="../res/weather-icon/100.png" class="responsive-img">
 				</div>
 				<!-- 主要天气指标 -->
 				<div class="col-md-8">
 					<!-- 温度 -->
-					<p id="city-temporary"><span>？温度？</span></p>
+					<p id="city-temporary">
+						<span>？温度？</span>
+					</p>
 					<!-- 描述文字 -->
 					<p id="wea-txt">？天气?</p>
 				</div>
@@ -43,20 +51,31 @@
 				<div class="col-md-12" id="wea-other">
 					<!--湿度-->
 					<div class="col-md-4">
-						<p><span class="glyphicon glyphicon glyphicon-tint"></span><span id="wea-hum">45.6</span></p>
+						<p>
+							<span class="glyphicon glyphicon glyphicon-tint"></span>
+							<span id="wea-hum">45.6</span>
+						</p>
 					</div>
 					<!-- 风 -->
 					<div class="col-md-5">
-						<p><span class="glyphicon glyphicon glyphicon-flag"></span><span id="wea-wind">北风 2级</span></p>
+						<p>
+							<span class="glyphicon glyphicon glyphicon-flag"></span>
+							<span id="wea-wind">北风 2级</span>
+						</p>
 					</div>
 					<!-- 空气质量 -->
 					<div class="col-md-3">
-						<p><span>pm2.5:</span><span id="wea-pm">16.6</span></p>
+						<p>
+							<span>pm2.5:</span>
+							<span id="wea-pm">16.6</span>
+						</p>
 					</div>
 				</div>
 			</div>
-		</div> <!--row-->
-	</div> <!-- container -->
+		</div>
+		<!--row-->
+	</div>
+	<!-- container -->
 
 
 	<div id="mirror" class="container">
@@ -67,20 +86,27 @@
 					<img src="../res/scanning.gif" class="img-responsive" alt="">
 				</div>
 				<div id="body-info" class="col-md-6">
-					<p>体重:<span id="weight">?</span></p>
-					<p>心率:<span id="heart">?</span></p>
-				</div>				
+					<p>体重:
+						<span id="weight">?</span>
+					</p>
+					<p>心率:
+						<span id="heart">?</span>
+					</p>
+				</div>
 			</div>
 
 		</div>
-	</div> <!-- mirror -->
+	</div>
+	<!-- mirror -->
 
 	<div id="suggestion" class="container">
 		<p id="sug-text">？出行建议出行建议出行建议出行建议出行建出行建议出行建议出行建议出行建议出行建议出行建议出行建议？</p>
 		<div></div>
-	</div> <!-- suggestion -->
+	</div>
+	<!-- suggestion -->
 
-<script src="../js/lib/jquery-3.3.1.min.js"></script>
-<script src="../js/main.js"></script>
+	<script src="../js/lib/jquery-3.3.1.min.js"></script>
+	<script src="../js/main.js"></script>
 </body>
+
 </html>
