@@ -16,14 +16,15 @@ body{
 	vertical-align:sub;
 	width: 65px;
 	height: 65px;
+	margin: 0 1%;
 }
+
 #time{
 	font-size: 150%;
 }
 #date{
 	font-size: 75%;
 }
-
 #city-temporary{
 	font-size: 80%;
 }

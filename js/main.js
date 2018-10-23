@@ -32,6 +32,15 @@ function fetchWeather() {
 	//指定杭州市
 	$("#city").text("杭州市");
 
+	//plan B： 用百度的接口定位
+	//let bd_KEY = 'c2niE7ExcK2izOZ0RWHxShaVVCuPzXvx';
+	// let city = '';
+	// $.get("https://api.map.baidu.com/location/ip?ak="+bd_KEY,function(res){
+	//     city = res.content.address_detail.city;
+	//     $("#city").text(city);
+	//});
+
+	
 	//温度
 	$.get("http://localhost:5000/temperature", data => {
 		if (data.status == 100) {
@@ -78,49 +87,6 @@ function fetchWeather() {
 		}
 	});
 }
-// function fetchWeather(){
-//百度普通id定位的服务接口
-// let bd_KEY = 'c2niE7ExcK2izOZ0RWHxShaVVCuPzXvx';
-// let city = '';
-// $.get("https://api.map.baidu.com/location/ip?ak="+bd_KEY,function(res){
-//     city = res.content.address_detail.city;
-//     $("#city").text(city);
-//     //删除“市”字
-//     if(city.indexOf("市")!=-1){
-//         city = city.substring(0,city.indexOf("市"));
-//     }
-//     //和风天气
-//     let KEY = '519e0e63ae8e4a7888e44729ec91f0f2';
-//     let API = "https://free-api.heweather.com/s6/weather/hourly"
-//     let LOCATION = city;
-//     let url = API + '?location=' + LOCATION + '&key=' + KEY + '&' + 'lang=en' + '&' + 'unit=m';
-
-//     $.ajax({
-//         type: 'POST',
-//         async: true,
-//         cache: false,
-//         url: url,
-//         dataType: 'json',
-//         success: (data) => {
-//         	//实况天气
-//             // let weather = data.HeWeather6[0].now;
-//             let weather = data.HeWeather6[0].hourly[1];
-//             //主要指标
-//             $('#wea-txt').text(weather.cond_txt);
-//             $('#city-temporary').text(weather.tmp+"℃");
-
-//             //次要指标
-//             //风向+风速  "西北风3级"
-//             $("#wea-wind").text(weather.wind_dir+weather.wind_sc+"级");
-//             //降雨概率
-//             $("#wea-rainpop").text(weather.pop);
-//             //图标
-//             let weather_code = weather.cond_code;
-//             $("#weather-icon").attr("src","../res/weather-icon/"+ weather_code +".png");
-//         }
-//     });        
-// },'jsonp');	
-// }
 function scanning() {
 	//扫描人脸
 	$.get("http://localhost:5000/login", res => {
