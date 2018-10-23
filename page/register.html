@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>魔镜注册</title>
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/lib/bootstrap.css">
+    <style>
+        .datetimepicker table tr td span {
+            height: 40px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="register">
+        <div id="topSun">
+            <img id="rotation" src="../res/image/topSun.png" width="172px" height="172px" style="opacity: 0.8">
+        </div>
+        <div id="registerForm">
+            <!--标题-->
+            <h1>魔镜</h1>
+
+            <!--注册表格-->
+            <form id="mainForm">
+                <!--姓名输入-->
+                <input required id="inputName" class="inputBox" value="" placeholder="请输入您的姓名" autocomplete="off">
+                <br>
+
+                <!--性别选择-->
+                <div id="sexBox" class="inputBox">
+
+                    <span class="sexLabel">性别：</span>
+                    <label for="female">
+                        <input type="radio" id="female" name="sex">
+                        <span></span>
+                    </label>
+                    <label for="male">
+                        <input type="radio" id="male" name="sex">
+                        <span></span>
+                    </label>
+
+
+                </div>
+                <!--出生年份-->
+                <select id="yearBirth" name="yearBirth" class="inputBox" style="color: #dadada">
+                    <option value="">请选择您的出生年份</option>
+                </select>
+                <br>
+                <!--身高-->
+                <select id="inputHeight" name="yearBirth" class="inputBox" style="color: #dadada">
+                    <option value="">请选择您的身高</option>
+                </select>
+
+                <br>
+                <button type="button" id="registerBtn">注册</button>
+            </form>
+
+            <!--提示信息-->
+            <div id="alertMsg">
+                请到魔镜设备上录入您的人脸信息
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--js文件引入-->
+
+    <script type="text/javascript" src="../js/lib/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/lib/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/register.js"></script>
+
+
+</body>
+
+</html>
