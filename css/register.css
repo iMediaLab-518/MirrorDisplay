@@ -9,7 +9,7 @@ body{
     font-family: "幼圆";
     margin: 0px;
    /* background-color: #ffaf0a;*/
-    background-image: url("../image/iPhone 6-7-8 –2.png");
+    background-image: url("../res/iPhone 6-7-8 –2.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -111,11 +111,11 @@ margin-right: 5px;
     background-size: cover;
 }
 #female[type=radio]+span{
-    background-image: url("../image/girl.png");
+    background-image: url("../res/girl.png");
     background-repeat: no-repeat;
 }
 #male[type=radio]+span{
-    background-image: url("../image/boy.png");
+    background-image: url("../res/boy.png");
     background-repeat: no-repeat;
 }
 input[type=radio]:checked+span{
@@ -157,11 +157,11 @@ input[type=radio]:checked+span{
 
 
 #female{
-    background-image: url("../image/girl.png");
+    background-image: url("../res/girl.png");
     margin-right: 20px;
 }
 #male{
-    background-image: url("../image/boy.png");
+    background-image: url("../res/boy.png");
 }
 #sexBox{
     margin: 0;
