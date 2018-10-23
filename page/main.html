@@ -11,8 +11,29 @@
 
 <body>
 
-	<div class="container">
-		<h1 id="greeting">请扫码注册<img src="../res/regrcode.png" alt="" ></h1>
+	<h1 id="greeting">请扫码注册<img src="../res/regrcode.png" alt="" ></h1>
+
+	<div id="mirror" class="container">
+		<!-- 镜子区域 -->
+		<div id="outer-mirror" class="row">
+			<div id="inner-mirror">
+				<div id="scanning" class="col-md-offset-2 col-md-10">
+					<img src="../res/scanning.gif" class="img-responsive" alt="">
+				</div>
+				<div id="body-info" class="col-md-6">
+					<p>体重:
+						<span id="weight">等待测量... 😊</span>
+					</p>
+					<p>心率:
+						<span id="heart">等待测量... :)</span>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</div><!-- mirror container-->
+
+	<div id="info" class="container">
 		<div class="row">
 			<!--时间-->
 			<div class="col-md-4">
@@ -58,38 +79,18 @@
 		<div class="row">
 			<!--日期+周几-->
 			<div class="col-md-4">
-					<p id="date">10月7日 周日</p>
-				</div>
-				<!-- 城市 -->
-				<div class="col-md-4">
-					<p>
-						<span class="glyphicon glyphicon-map-marker"></span>
-						<span id="city">杭州市</span>
-					</p>
-				</div>
+				<p id="date">10月7日 周日</p>
+			</div>
+			<!-- 城市 -->
+			<div class="col-md-4">
+				<p>
+					<span class="glyphicon glyphicon-map-marker"></span>
+					<span id="city">杭州市</span>
+				</p>
+			</div>
 		</div><!-- row 2-->
 
 	</div><!-- info container -->
-
-	<div id="mirror" class="container">
-		<!-- 镜子区域 -->
-		<div id="outer-mirror" class="row">
-			<div id="inner-mirror">
-				<div id="scanning" class="col-md-offset-2 col-md-10">
-					<img src="../res/scanning.gif" class="img-responsive" alt="">
-				</div>
-				<div id="body-info" class="col-md-6">
-					<p>体重:
-						<span id="weight">等待测量... 😊</span>
-					</p>
-					<p>心率:
-						<span id="heart">等待测量... :)</span>
-					</p>
-				</div>
-			</div>
-
-		</div>
-	</div><!-- mirror container-->
 
 	<div id="suggestion" class="container">
 		<p id="sug-text">出行建议：等待获取...</p>
@@ -99,5 +100,4 @@
 	<script src="../js/lib/jquery-3.3.1.min.js"></script>
 	<script src="../js/main.js"></script>
 </body>
-
 </html>

@@ -38,11 +38,14 @@ body{
 	margin-left: 8%;
 }
 #suggestion{
-	margin: 5% 10% 10% 10%;
+	/* margin: 5% 10% 10% 10%; */
 	background: linear-gradient(to right,rgb(234,123,40),rgb(245,186,40));
 	border-radius: 60px 0 0 60px;
 	font-size: 60%;
-	padding: 20px 0px 20px 50px;
+	padding: 20px 0px 20px 40px;
+	position: absolute;
+	bottom: 100px;
+	right: 0px;
 }
 #suggestion div{
 	/*用来修饰的div*/
@@ -54,17 +57,20 @@ body{
 	position:absolute;
 	right: 0px;
 }
+
 #mirror{
 	height: 1000px;
-	margin-top: 10%;
+	margin-top: 15%;
 	margin-bottom: 10%;
 }
 #outer-mirror{
+	/*正框*/
 	height: 90%;
 	margin:0% 1%;
 	border:18px rgb(234,123,40) solid;
 }
 #inner-mirror{
+	/*斜框*/
 	height: 100%;
 	transform: rotate(-10deg) ;
 	border: 18px #ffffff solid;
