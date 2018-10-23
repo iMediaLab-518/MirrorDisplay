@@ -10,7 +10,9 @@ body{
 #greeting{
 	text-align: center;
 	font-size:120%;
-	margin: 50px;
+	margin-bottom: 50px;
+	margin-top:0px;
+	padding-top: 50px;
 }	
 #greeting img{
 	vertical-align:sub;
