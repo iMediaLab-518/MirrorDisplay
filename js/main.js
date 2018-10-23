@@ -1,12 +1,13 @@
 /**
  *
  * @authors Wang Ping
- * @date    2018-10-21
- * @version 1.4
+ * @date    2018-10-23
+ * @version 1.5
  *
  **/
 
 function fetchDateTime() {
+	//渲染日期+时间
 	let ch_weekday = ['日', '一', '二', '三', '四', '五', '六'];
 
 	let now = new Date();
@@ -26,6 +27,8 @@ function fetchDateTime() {
 }
 
 function fetchWeather() {
+	//渲染天气+地区
+	
 	//指定杭州市
 	$("#city").text("杭州市");
 
@@ -34,10 +37,8 @@ function fetchWeather() {
 		if (data.status == 100) {
 			$("#city-temporary").text(data.out + "℃");
 			//根据温度=>出行建议
-
 			$.get("http://localhost:5000/traveladvice?t=" + data.out, res => {
 				if (res.status == 100) {
-					//建议可能太长影响显示，需要处理
 					$("#sug-text").text(res.out);
 				}
 			});

@@ -12,71 +12,64 @@
 <body>
 
 	<div class="container">
-		<h1 id="greeting">扫码注册</h1>
+		<h1 id="greeting">请扫码注册<img src="../res/regrcode.png" alt="" ></h1>
 		<div class="row">
-			<div class="col-md-5">
-				<!-- 时间 -->
-				<div class="col-md-12">
-					<p id="time">07 : 05</p>
-				</div>
-				<!-- 日期 + 星期几 -->
-				<div class="col-md-10">
-					<p id="date">10月7日星期日</p>
-				</div>
-				<div class="col-md-12">
-					<!-- 城市 -->
-					<p>
-						<span class="glyphicon glyphicon-map-marker"></span>
-						<span id="city">***市</span>
-					</p>
-				</div>
+			<!--时间-->
+			<div class="col-md-4">
+				<p id="time">07 : 05</p>
 			</div>
-			<!--datetime-->
-
-			<div class="col-md-7">
-				<!-- 天气图标 -->
-				<div class="col-md-4">
-					<img id="weather-icon" width="130px" src="../res/weather-icon/100.png" class="responsive-img">
-				</div>
-				<!-- 主要天气指标 -->
-				<div class="col-md-8">
-					<!-- 温度 -->
-					<p id="city-temporary">
-						<span>？温度？</span>
-					</p>
-					<!-- 描述文字 -->
-					<p id="wea-txt">？天气?</p>
-				</div>
-				<!-- 次要天气指标(换行) -->
-				<div class="col-md-12" id="wea-other">
-					<!--湿度-->
-					<div class="col-md-4">
+			<!-- 天气图标 -->
+			<div class="col-md-3">
+				<img id="weather-icon" width="130px" src="../res/weather-icon/100.png" class="responsive-img">
+			</div>
+			<!-- 主要天气指标 -->
+			<div class="col-md-2">
+				<!-- 温度 -->
+				<p id="city-temporary">20度</p>
+				<!-- 描述文字 -->
+				<p id="wea-txt">多云</p>
+			</div>
+			<!--次要天气指标*3-->
+			<div class="col-md-3" id="wea-other">
+				<!--湿度-->
+				<div class="col-md-12">
 						<p>
 							<span class="glyphicon glyphicon glyphicon-tint"></span>
-							<span id="wea-hum">45.6</span>
+							<span id="wea-hum">45.6%</span>
 						</p>
 					</div>
 					<!-- 风 -->
-					<div class="col-md-5">
+					<div class="col-md-12">
 						<p>
 							<span class="glyphicon glyphicon glyphicon-flag"></span>
 							<span id="wea-wind">北风 2级</span>
 						</p>
 					</div>
 					<!-- 空气质量 -->
-					<div class="col-md-3">
+					<div class="col-md-12">
 						<p>
 							<span>pm2.5:</span>
 							<span id="wea-pm">16.6</span>
 						</p>
 					</div>
-				</div>
 			</div>
-		</div>
-		<!--row-->
-	</div>
-	<!-- container -->
+		</div><!--row 1-->
 
+		<div class="row">
+			<!--日期+周几-->
+			<div class="col-md-4">
+					<p id="date">10月7日 周日</p>
+				</div>
+				<!-- 城市 -->
+				<div class="col-md-4">
+					<p>
+						<span class="glyphicon glyphicon-map-marker"></span>
+						<span id="city">杭州市</span>
+					</p>
+				</div>
+		</div><!-- row 2-->
+
+	</div><!-- info container -->
 
 	<div id="mirror" class="container">
 		<!-- 镜子区域 -->
@@ -87,23 +80,21 @@
 				</div>
 				<div id="body-info" class="col-md-6">
 					<p>体重:
-						<span id="weight">?</span>
+						<span id="weight">等待测量... 😊</span>
 					</p>
 					<p>心率:
-						<span id="heart">?</span>
+						<span id="heart">等待测量... :)</span>
 					</p>
 				</div>
 			</div>
 
 		</div>
-	</div>
-	<!-- mirror -->
+	</div><!-- mirror container-->
 
 	<div id="suggestion" class="container">
-		<p id="sug-text">？出行建议出行建议出行建议出行建议出行建出行建议出行建议出行建议出行建议出行建议出行建议出行建议？</p>
+		<p id="sug-text">出行建议：等待获取...</p>
 		<div></div>
-	</div>
-	<!-- suggestion -->
+	</div>	<!-- suggestion container-->
 
 	<script src="../js/lib/jquery-3.3.1.min.js"></script>
 	<script src="../js/main.js"></script>

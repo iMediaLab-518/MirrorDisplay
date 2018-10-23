@@ -11,8 +11,12 @@ body{
 	text-align: center;
 	font-size:120%;
 	margin: 50px;
+}	
+#greeting img{
+	vertical-align:sub;
+	width: 65px;
+	height: 65px;
 }
-
 #time{
 	font-size: 150%;
 }
