@@ -184,6 +184,3 @@ input[type=radio]:checked+span{
     text-align: center;
     line-height: 17px;
 }
-#regAlert{
-    display: none;
-}
