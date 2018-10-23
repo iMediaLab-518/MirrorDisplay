@@ -77,5 +77,5 @@ body{
 #scanning{
 	transform: rotate(10deg);
 	margin-top: 10%;
-	visibility: /*hidden*/;
+	/*visibility: hidden*/;
 }
