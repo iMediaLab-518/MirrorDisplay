@@ -39,10 +39,10 @@ $(document).ready(function () {
         //若全部填写
 
        else{
-            // console.log( $('#inputName').val());
-            // console.log( $(sexChecked));
-            // console.log( $('#inputHeight').val());
-            // console.log( $('#yearBirth').val());
+             console.log( $('#inputName').val());
+             console.log( sexChecked);
+             console.log( $('#inputHeight').val());
+            console.log( $('#yearBirth').val());
             $('#inputName').css('border','none');
             $('.sexLabel').css('color','#ffffff');
             $('#inputHeight').css('border','none');
@@ -59,8 +59,9 @@ $(document).ready(function () {
                 {
                     name:$('#inputName').val(),
                     gender:sexChecked,
-                    height:$('#inputHeight').val(),
-                    year:$('#yearBirth').val()
+                    year:$('#yearBirth').val(),
+                    height:$('#inputHeight').val()
+
             },data=> {
                 //返回成功
                 if(data.status==100){
