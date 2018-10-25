@@ -53,6 +53,7 @@ $(document).ready(function () {
                 'color': '#999999',
                 'border': '1px #E9E9E9 solid'
             });
+            $('#registerBtn').attr('disabled','disabled');
             $('#registerBtn').text('注册中...');
 
             $.post("http://192.168.2.244:5000/register",

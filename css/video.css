@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    width:1920px;
+    height: 1080px;
+}
+#video{
+    height: 100%;
+    width: 100%;
+    background-color: #000000;
+}
+/*头部*/
+#head{
+    height: 93px;
+    width: 100%;
+    border: 1px solid #ffffff;
+}
+
+#level{
+    width: 351px;
+    height: 87px;
+    background-image: url("../res/1-star.png");
+    background-repeat: no-repeat;
+    float: left;
+}
+
+#sign{
+    clear: both;
+    font-size:48px;
+    font-family: "微软雅黑";
+    font-weight: lighter;
+
+    color: #ffffff;
+    margin: 0 auto;
+
+}
+#videoPlay{
+    margin: 0 auto;
+    height: 855px;
+    width: 1520px;
+    background-color: white;
+}
