@@ -6,7 +6,7 @@
 body{
 
     margin: 0 auto;
-    font-family: "幼圆";
+    font-family: "微软雅黑";
     margin: 0px;
    /* background-color: #ffaf0a;*/
     background-image: url("../res/iPhone 6-7-8 –2.png");
@@ -123,22 +123,19 @@ input[type=radio]:checked+span{
     border-radius: 5px;
 }
 #registerBtn{
-    margin-top: 26px;
+    margin-top: 24px;
     border-radius: 30px;
     height:50px;
     width: 40%;
     border: none;
-    font-size: 18px;
     background-color: transparent;
     color: #ffffff;
     font-weight: lighter;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
     border: 1px solid #ffffff;
 }
-#registerBtn:hover{
 
-}
 #topSun{
     width: 172px;
     height:86px;
@@ -179,8 +176,8 @@ input[type=radio]:checked+span{
 #alertMsg{
     display:none;
     color: #ffffff;
-    font-size: 17px;
-    margin-top: 30px;
+    font-size: 18px;
+    margin-top: 35px;
     text-align: center;
-    line-height: 17px;
+    line-height: 18px;
 }
