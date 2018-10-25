@@ -2,7 +2,7 @@
  *
  * @authors Wang Yuanyuan
  * @date    2018-10-23
- * @version 1.1
+ * @version 1.2
  *
  **/
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
             });
             $('#registerBtn').text('注册中...');
 
-            $.post("http://localhost:5000/register",
+            $.post("http://192.168.2.244:5000/register",
                 {
                     name:$('#inputName').val(),
                     gender:sexChecked,
