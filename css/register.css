@@ -11,7 +11,7 @@ body{
    /* background-color: #ffaf0a;*/
     background-image: url("../res/iPhone 6-7-8 –2.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
 }
 #register{
     width: 100%;
@@ -30,20 +30,13 @@ body{
     font-family: "幼圆";
     color: #fff;
     padding-top: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 8%;
     font-size: 33px;
 
     text-align: center;
 
 }
-#photo{
-    width: 100%;
-    height: 101px;
-    margin-top: 40px;
-    margin-bottom: 40px;
 
-
-}
 #mainForm{
   text-align: center;
 }
@@ -55,17 +48,23 @@ body{
     width: 55%;
     border: none;
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 8%;
     padding-left: 10px;
 }
 #inputName{
+
     margin-bottom: 23px;
 }
 .inputBox::placeholder{
     color: #dadada;
     font-size: 16px;
 }
-
+#inputHeight{
+    background-color: white;
+}
+#yearBirth{
+    background-color: white;
+}
 /*#birthYear{
     border-radius: 5px;
     height:40px;
@@ -105,9 +104,7 @@ input[type=radio]+span {
     width: 40px;
     height: 40px;
     display: inline-block;
-
 margin-right: 5px;
-
     background-size: cover;
 }
 #female[type=radio]+span{
