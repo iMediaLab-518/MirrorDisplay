@@ -92,7 +92,7 @@ function scanning() {
 	$.get("http://localhost:5000/login", res => {
 		if (res.status == 100) {
 			if (res.out !== "unknown") {
-				current_user = res.out;
+				current_user = res.out[0];
 				//清除interval
 				//clearInterval(S_ID);
 				//设置一个新的interval
@@ -116,7 +116,7 @@ function scanning() {
 function login(current_user) {
 
 	//改变greeting
-	$("#greeting").text(current_user + "你好");
+	$("#greeting").text(current_user + " 你好:)");
 	//隐藏扫描特效
 	$("#scanning").css('visibility', 'hidden');
 
