@@ -101,7 +101,7 @@ function scanning() {
 				login(current_user);
 			} else {
 				//未知用户
-				$("#greeting").text("新用户您好，请扫码进行注册");
+				$("#greeting").html('新用户您好，请扫码进行注册<img src="../res/regrcode.png" alt="" >');
 			}
 		} else if (res.status == 301) {
 			//没有检测到人脸
