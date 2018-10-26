@@ -129,26 +129,35 @@ function login(current_user) {
 function Logout() {
 
 }
+function resetBand(){
+	$.get("http://localhost:5000/util/reset",res =>{
+		if(res.status==100){
+			//reset success
+			let init_status = 0;
+			while(init_status!=100){
+				//持续初始化
+				init_status==initBand();
+			}
+		}
+		else{
+			resetBand();
+		}
+	});
 
+}
+function initBand(){
+	$.get("http://localhost:5000/util/initband",res=>{ 
+		return res.status;
+	});
+}
 function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
 			$("#heartrate").text(res.out);
 		}
 		else if(res.status==206){
-			//error
-			$.get("http://localhost:5000/util/reset",res =>{
-				if(res.status==100){
-					//reset success
-					$.get("http://localhost:5000/util/initband",res=>{
-						//init 
-						if(res.status==100){
-							//init success =>  重新获取心率
-							getHeartrate();
-						}
-					});
-				}
-			});
+			//error => reset
+			resetBand();		
 		}
 	});
 }
