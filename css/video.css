@@ -6,13 +6,14 @@
 body{
     width:1920px;
     height: 1080px;
-    transform-origin: center bottom;
-    transform: rotate(90deg);
+
 }
 #video{
     height: 100%;
     width: 100%;
     background-color: #000000;
+
+
 
 }
 /*头部*/
@@ -116,4 +117,52 @@ body{
 
 
 
-/*页面旋转*/
+#pauseAlert{
+    display: none;
+    height:725px ;
+    width: 1137px;
+    background-image: url("../res/alertBg.png");
+    margin: 0 auto;
+    position: absolute;
+    top: 180px;
+    left: 390px;
+    border-radius:40px;
+    color: #ffffff;
+
+}
+#alertBtn{
+    border: none;
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    background-image: url("../res/pause2.png");
+    background-size: contain;
+    position: absolute;
+    left: 200px;
+    top: 170px;
+}
+#title{
+    font-size: 60px;
+    font-family: "微软雅黑";
+    position: absolute;
+    left:510px;
+    top: 195px;
+    letter-spacing: 5px;
+
+}
+#sportTime{
+    font-size: 80px;
+    font-family: "理杏简黑R";
+    position: absolute;
+    left:580px;
+    top: 300px;
+    letter-spacing: 5px;
+}
+#sign2{
+    font-size: 50px;
+    font-family: "微软雅黑";
+    position: absolute;
+    left:140px;
+    top: 480px;
+    letter-spacing: 5px;
+}

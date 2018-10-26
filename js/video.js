@@ -2,7 +2,7 @@
  *
  * @authors Wang Yuanyuan
  * @date    2018-10-26
- * @version 1.0
+ * @version 1.1
  *
  **/
 
@@ -24,6 +24,7 @@ var video1=$('#videoContent');
         m=m<10?"0"+m:m;
 
         $('#timePass').text(m+":"+s);
+        $('#sportTime').text(m+":"+s);
         //console.log(video.currentTime)
     });
 //进度条
@@ -62,6 +63,9 @@ var video1=$('#videoContent');
     $('#playBtn').on('click',function () {
         //开始
     if(video.paused){
+        video1.css('display','block');
+        $('#videoPlay').css('background-color','#ffffff');
+        $('#pauseAlert').css('display','none');
         $('#timePass').css('color',"rgb("+255+","+177+","+39+")");
         $('#heartCount').css('color',"#FFAF0A");
         $('#heartPic').css("background-image","url(../res/heart.png)");
@@ -71,6 +75,9 @@ var video1=$('#videoContent');
     }
     //暂停
     else{
+        video1.css('display','none');
+        $('#videoPlay').css('background-color','#999999');
+        $('#pauseAlert').css('display','block');
         $('#timePass').css('color',"rgb("+255+","+255+","+255+")");
         $('#heartCount').css('color',"#ffffff");
         $('#heartPic').css("background-image","url(../res/heart-w.png)");
@@ -81,6 +88,19 @@ var video1=$('#videoContent');
     }
    // console.log(11111);
     return false;
+});
+$('#alertBtn').click(function(){
+
+    if(video.paused) {
+        video1.css('display','block');
+        $('#videoPlay').css('background-color','#ffffff');
+        $('#pauseAlert').css('display','none');
+        video.play();
+        $('#timePass').css('color',"rgb("+255+","+177+","+39+")");
+        $('#heartCount').css('color',"#FFAF0A");
+        $('#heartPic').css("background-image","url(../res/heart.png)");
+        $('#playBtn').css("background-image","url(../res/play.png)");
+    }
 });
 
 })
