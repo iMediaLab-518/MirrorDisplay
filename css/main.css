@@ -78,6 +78,7 @@ body{
 	display: none;
 	transform: rotate(10deg);
 	margin-top: 0;
+	font-size: 60%;
 }
 #scanning{
 	transform: rotate(10deg);

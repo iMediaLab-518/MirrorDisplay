@@ -135,6 +135,21 @@ function getHeartrate() {
 		if (res.status == 100) {
 			$("#heartrate").text(res.out);
 		}
+		else if(res.status==206){
+			//error
+			$.get("http://localhost:5000/util/reset",res =>{
+				if(res.status==100){
+					//reset success
+					$.get("http://localhost:5000/util/initband",res=>{
+						//init 
+						if(res.status==100){
+							//init success =>  重新获取心率
+							getHeartrate();
+						}
+					});
+				}
+			});
+		}
 	});
 }
 
