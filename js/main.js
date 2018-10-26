@@ -28,7 +28,7 @@ function fetchDateTime() {
 
 function fetchWeather() {
 	//渲染天气+地区
-	
+
 	//指定杭州市
 	$("#city").text("杭州市");
 
@@ -40,7 +40,7 @@ function fetchWeather() {
 	//     $("#city").text(city);
 	//});
 
-	
+
 	//温度
 	$.get("http://localhost:5000/temperature", data => {
 		if (data.status == 100) {
@@ -87,15 +87,15 @@ function fetchWeather() {
 		}
 	});
 }
+
 function scanning() {
 	//扫描人脸
 	$.get("http://localhost:5000/login", res => {
 		if (res.status == 100) {
 			if (res.out !== "unknown") {
 				current_user = res.out[0];
-				//清除interval
 				//clearInterval(S_ID);
-				//设置一个新的interval
+				clearTimeout(S_ID);
 
 				//登录
 				login(current_user);
@@ -104,10 +104,17 @@ function scanning() {
 				$("#greeting").html('新用户您好，请扫码进行注册<img src="../res/regrcode.png" alt="" >');
 			}
 		} else if (res.status == 301) {
-			//没有检测到人脸
-			scanning();
+			//err:没有检测到人脸
+			//10s后再扫描一次
+			S_ID = setTimeout(function () {
+				scanning();
+			}, 1000 * 10);
 		} else {
-			scanning();
+			//unknow err
+			//10s后再扫描一次
+			S_ID = setTimeout(function () {
+				scanning();
+			}, 1000 * 10);
 		}
 	});
 
@@ -129,35 +136,36 @@ function login(current_user) {
 function Logout() {
 
 }
-function resetBand(){
-	$.get("http://localhost:5000/util/reset",res =>{
-		if(res.status==100){
+
+function resetBand() {
+	$.get("http://localhost:5000/util/reset", res => {
+		if (res.status == 100) {
 			//reset success
 			let init_status = 0;
-			while(init_status!=100){
+			while (init_status != 100) {
 				//持续初始化
-				init_status==initBand();
+				init_status == initBand();
 			}
-		}
-		else{
+		} else {
 			resetBand();
 		}
 	});
 
 }
-function initBand(){
-	$.get("http://localhost:5000/util/initband",res=>{ 
+
+function initBand() {
+	$.get("http://localhost:5000/util/initband", res => {
 		return res.status;
 	});
 }
+
 function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
 			$("#heartrate").text(res.out);
-		}
-		else if(res.status==206){
+		} else if (res.status == 206) {
 			//error => reset
-			resetBand();		
+			resetBand();
 		}
 	});
 }
@@ -166,8 +174,7 @@ function getWeight() {
 	$.get("http://localhost:5000/weight", res => {
 		if (res.status == 100) {
 			$("#weight").text(res.out);
-		}
-		else{
+		} else {
 			getWeight();
 		}
 	});
