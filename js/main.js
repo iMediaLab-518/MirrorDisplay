@@ -5,6 +5,7 @@
  * @version 1.5
  *
  **/
+let S_ID;
 
 function fetchDateTime() {
 	//渲染日期+时间
@@ -95,7 +96,7 @@ function scanning() {
 			if (res.out !== "unknown") {
 				current_user = res.out[0];
 				//clearInterval(S_ID);
-				clearTimeout(S_ID);
+				if(S_ID) clearTimeout(S_ID);
 
 				//登录
 				login(current_user);
@@ -142,7 +143,7 @@ function resetBand() {
 		if (res.status == 100) {
 			//reset success
 			$.get("http://localhost:5000/util/initband", res => {
-				
+
 			});
 		}
 		else {
