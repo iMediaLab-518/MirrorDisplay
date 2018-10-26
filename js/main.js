@@ -131,7 +131,10 @@ function login(current_user) {
 	$("#body-info").show();
 
 	getHeartrate();
-	getWeight();
+	//after 8s
+	setTimeout(function(){
+		getWeight();
+	},8*1000);
 }
 
 function Logout() {
