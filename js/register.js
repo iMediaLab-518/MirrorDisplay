@@ -77,6 +77,15 @@ $(document).ready(function () {
 
 
                 }
+                else{
+                    $('#alertMsg').text("注册失败!请重试!").show();
+                    $('#registerBtn').css({
+                        'background-color': 'transparent',
+                        'color': '#ffffff',
+                        'border': '1px #E9E9E9 solid'
+                    });
+                    $('#registerBtn').text('注册');
+                }
 
 
 
