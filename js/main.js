@@ -158,6 +158,9 @@ function getWeight() {
 		if (res.status == 100) {
 			$("#weight").text(res.out);
 		}
+		else{
+			getWeight();
+		}
 	});
 }
 
