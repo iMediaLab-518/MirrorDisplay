@@ -6,6 +6,8 @@
 body{
     width:1920px;
     height: 1080px;
+    transform: rotate(90deg) translate(960px,-120px);
+    transform-origin: top;
 
 }
 #video{
