@@ -125,6 +125,10 @@ function login(current_user) {
 
 	//改变greeting
 	$("#greeting").text(current_user + " 你好:)");
+
+	let greet_audio = document.getElementById("greet-audio");
+	greet_audio.muted=false;
+	greet_audio.play();
 	//隐藏扫描特效
 	$("#scanning").css('visibility', 'hidden');
 
