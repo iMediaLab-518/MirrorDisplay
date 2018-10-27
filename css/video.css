@@ -23,7 +23,7 @@ body{
     padding-top: 10px;
     height: 115px;
     width: 100%;
-    border: 1px solid #ffffff;
+    /*border: 1px solid #ffffff;*/
 }
 
 #level{
@@ -77,7 +77,7 @@ body{
 #foot{
     width: 1918px;
     height: 110px;
-    border: 1px solid #ffffff;
+    /*border: 1px solid #ffffff;*/
 }
 #playBtn{
     width: 80px;
@@ -154,7 +154,7 @@ body{
 }
 #sportTime{
     font-size: 80px;
-    font-family: "理杏简黑R";
+    font-family: "华文细黑";
     position: absolute;
     left:580px;
     top: 300px;

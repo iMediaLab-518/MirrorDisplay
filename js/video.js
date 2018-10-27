@@ -1,8 +1,8 @@
 /**
  *
  * @authors Wang Yuanyuan
- * @date    2018-10-26
- * @version 1.1
+ * @date    2018-10-27
+ * @version 1.2
  *
  **/
 
@@ -15,10 +15,14 @@ var video1=$('#videoContent');
     video1.on('timeupdate',function(){
         var s=parseInt(video.currentTime);   //秒
         var m=0;                         //分
-        if (s > 60) {
+        if (s >= 60) {
             m = parseInt(s / 60);
             s = parseInt(s % 60);
 
+
+        }
+        if(s==60){
+          console.log(1);
         }
     s=s<10?"0"+s:s;
         m=m<10?"0"+m:m;
