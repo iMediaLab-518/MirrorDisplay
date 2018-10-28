@@ -37,7 +37,7 @@ $.get("http://localhost:5000/sport/warmup",data=>{
         video1.append("<source src='../res/video/"+data.out[1]+"' type='video/mp4'>")
         level.value=data.out[2];
         maxDuration=data.out[4];
-        console.log(level.value)
+        console.log(level.value);
         console.log(maxDuration);
         
     }
@@ -59,7 +59,7 @@ $.get("http://localhost:5000/sport/warmup",data=>{
 
 });
 //判断心率
-    if(level==0){
+    if(level.value==0){
         //载入心率 10s刷新一次
         $.get('http://localhost:5000/heartrate',data=>{
             if(data.status==100){
@@ -102,9 +102,8 @@ $.get("http://localhost:5000/sport/warmup",data=>{
 
 //判断等级
 //level=0,热身
-if(level.value==0){
-  level.text("热身阶段").show();
-
+if(level.value!=0){
+    level.text().hide();
 }
 
 //level=1

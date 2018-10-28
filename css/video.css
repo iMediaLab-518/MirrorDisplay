@@ -31,7 +31,10 @@ body{
     height: 87px;
     float: left;
     color: rgb(255,177,39);
+    font-size: 48px;
+    margin-left: 20px;
 }
+
 
 #sign{
     height: 90px;
