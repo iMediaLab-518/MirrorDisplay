@@ -196,7 +196,6 @@ maxDuration=video.duration;
        var nowTime=video.currentTime;
         //console.log(nowTime);
         //console.log(maxDuration);
-       console.log($('#timeBar').width());
         var current=($('#timeBar').width()/maxDuration)*nowTime;
 
         $('#currentBar').css({
