@@ -8,9 +8,9 @@
 
 (function ($) {
 	//视频结束后，显示模态框
-	//	$("#movie").bind('ended',function(){
+//		$("#movie").bind('ended',function(){
 	$('#myModal').modal('show');
-	//	});
+//		});
 
 	//10秒倒计时
 	var intDiff = parseInt(10);//倒计时总秒数量
@@ -38,12 +38,6 @@
 	//	window.location.href = '../page/main.html';
 	//}, 12000);
 
-	$('.Return').on('click', function (e) {
-		window.location.href = 'login.html';
-	})
-	$('.SetUp').on('click', function (e) {
-		console.log(1);
-	})
 
 	//时间获取
 	fetchContext();
@@ -71,6 +65,45 @@
 	}
 	let fetchTimer1 = window.setInterval(fetchContext, 1000);
 
+	//用户信息的获取
+	getUserName();
+	getUserHeight();
+	getUserBMI();
+	getUserWeight();
+	//姓名
+	function getUserName(){
+		$.get("http://localhost:5000/login", data => {
+			if (data.status == 100) {
+				$(".user-name-item").text(data.out[0]);
+			}
+		});	
+	}
+	//身高
+	function getUserHeight(){
+		$.get("http://localhost:5000/login", data => {
+			if (data.status == 100) {
+				$(".height-item-value").text(data.out[0]+"cm");
+			}
+		});	
+	}
+	
+	//BMI
+	function getUserBMI(){
+		$.get("http://localhost:5000/data/BMI", data => {
+			if (data.status == 100) {
+				$(".BMI-value").text(data.out);
+			}
+		});		
+	}
+	//体重
+	function getUserWeight(){
+		$.get("http://localhost:5000/weight", data => {
+			if (data.status == 100) {
+				$(".weight-item-value").text(data.out+"kg");
+			}
+		});		
+	}
+	
 	//生理参数的获取
 	getSportsTime();
 	getHighestHeartRate();
