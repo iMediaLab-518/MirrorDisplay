@@ -11,7 +11,8 @@ $(document).ready(function () {
    var video=document.getElementById('videoContent');
    var video1=$('#videoContent');
    var maxDuration;
-   var flag=null;
+   //var level=null;
+    var level=$('level');
    var MH1=null;  //运动最大心率
   var MH2=null;    //热身最大心率
 
@@ -33,9 +34,16 @@ $(document).ready(function () {
 
 $.get("http://localhost:5000/sport/warmup",data=>{
     if(data.status==100){
+<<<<<<< HEAD
         video1.append("<source src='../res/video/"+data.out[1]+"' type='video/mp4'>")
         flag=data.out[2];
+=======
+        video1.append("<source src='../res/video/'"+data.out[1]+"type=video/mp4>")
+        level.value=data.out[2];
+>>>>>>> 4d6718946d3f5361af80a3a2b3f2a27fe1af30de
         maxDuration=data.out[4];
+        console.log(level.value)
+        console.log(maxDuration);
         
     }
     video.addEventListener('ended',function(){  //判断热身视频是否结束
@@ -47,7 +55,7 @@ $.get("http://localhost:5000/sport/warmup",data=>{
         $.get("http://localhost:5000/sport/start",data=>{      //载入运动视频
             if(data.status==100){
                video1.append("<source src='../res/video/'"+data.out[1]+"type=video/mp4>")
-               flag=data.out[2]
+               level.value=data.out[2]
                 maxDuration=data.out[4];
             }
         });
@@ -56,11 +64,11 @@ $.get("http://localhost:5000/sport/warmup",data=>{
 
 });
 //判断心率
-    if(flag==0){
+    if(level==0){
         //载入心率 10s刷新一次
         $.get('http://localhost:5000/heartrate',data=>{
             if(data.status==100){
-                ID1=setInterval(function(){
+                ID=setInterval(function(){
                     $('#heartCount').text(data.out);
                     if(data.out>=MH2){
                         $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
@@ -99,56 +107,56 @@ $.get("http://localhost:5000/sport/warmup",data=>{
 
 //判断等级
 //level=0,热身
-if(flag==0){
-  $('#level').text("热身阶段").show();
+if(level.value==0){
+  level.text("热身阶段").show();
 
 }
 
 //level=1
-if(flag==1){
+if(level.value==1){
     if(video.pause){
-        $('#level').css('background-image','../res/1-start-w.png');
+        level.css('background-image','../res/1-start-w.png');
     }else{
-        $('#level').css('background-image','../res/1-start.png');
+        level.css('background-image','../res/1-start.png');
     }
 
 }
 //level=2
-if(flag==2){
+if(level.value==2){
    if(video.pause){
-        $('#level').css('background-image','../res/2-start-w.png');
+        level.css('background-image','../res/2-start-w.png');
     }
     else{
-        $('#level').css('background-image','../res/2-start.png');
+        level.css('background-image','../res/2-start.png');
     }
 
 }
 //level=3
-if(flag==3){
+if(level.value==3){
 
    if(video.pause){
-        $('#level').css('background-image','../res/3-start-w.png');
+        level.css('background-image','../res/3-start-w.png');
     }
    else{
-       $('#level').css('background-image','../res/3-start.png');
+       level.css('background-image','../res/3-start.png');
    }
 
 }
 //level=4
-if(flag==4){
+if(level.value==4){
     if(video.pause){
-        $('#level').css('background-image','../res/4-start-w.png');
+        level.css('background-image','../res/4-start-w.png');
     } else{
-        $('#level').css('background-image','../res/4-start.png');
+        level.css('background-image','../res/4-start.png');
     }
 
 }
 //level=5
-if(flag==5){
+if(level.value==5){
     if(video.pause){
-        $('#level').css('background-image','../res/5-start-w.png');
+        level.css('background-image','../res/5-start-w.png');
     } else{
-        $('#level').css('background-image','../res/5-start.png');
+        level.css('background-image','../res/5-start.png');
     }
 
 }
@@ -178,23 +186,15 @@ if(flag==5){
     });
 //进度条
     video1.on('timeupdate',function(){
-        var r=255;
-        var g=118;
-        var b=39;
-        var currentColor;
+
        var nowTime=video.currentTime;
         //console.log(nowTime);
         //console.log(maxDuration);
        // console.log($('#timeBar').width);
         var current=($('#timeBar').width()/maxDuration)*nowTime;
-        currentColor=g+(60/maxDuration)*nowTime;
 
         $('#currentBar').css(
-            {
-                'width': current + "px",
-                'background-color':"rgb("+r+","+currentColor+","+b+")"
-            }
-        );
+                'width',current + "px");
         if(video.paused){
             $('#currentBar').css(
                 {

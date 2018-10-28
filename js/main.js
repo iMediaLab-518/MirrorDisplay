@@ -138,9 +138,12 @@ function login(current_user) {
 	//生理参数模块
 	$("#body-info").show();
 
-	getHeartrate();
 
 	getWeight();
+
+	Heart_ID = setInterval(function(){
+		getHeartrate();
+	},1000*2);
 
 }
 
@@ -166,8 +169,7 @@ function resetBand() {
 function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
-			$("#heartrate").text(res.out+" bpm").hide().slideDown();
-			resetBand();
+			$("#heartrate").text(res.out+" bpm").hide().slideDown();	
 		} else if (res.status == 206) {
 			//error => reset
 			resetBand();
@@ -177,7 +179,7 @@ function getHeartrate() {
 
 function getWeight() {
 	//获取体重和BMI
-
+	resetBand();
 	$.get("http://localhost:5000/weight", res => {
 		if (res.status == 100) {
 			$("#weight").text(res.out).hide().slideDown();
@@ -210,10 +212,10 @@ function getBMI(){
 
 function fetchContent() {
 	fetchWeather();
-	//每小时更新天气
+	//每半小时更新天气
 	W_ID = setInterval(() => {
 		fetchWeather();
-	}, 1000 * 60 * 60);
+	}, 1000 * 60 * 30);
 
 
 	fetchDateTime();
