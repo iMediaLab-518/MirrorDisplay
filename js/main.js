@@ -166,7 +166,7 @@ function resetBand() {
 function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
-			$("#heartrate").text(res.out).hide().slideDown();
+			$("#heartrate").text(res.out+" bpm").hide().slideDown();
 			resetBand();
 		} else if (res.status == 206) {
 			//error => reset
@@ -188,9 +188,19 @@ function getWeight() {
 	});
 }
 function getBMI(){
-	$.get("http://localhost:5000/data/bmi",res=>{
+	$.get("http://localhost:5000/data/BMI",res=>{
 		if(res.status==100){
-			$("#BMI").text(res.out).hide().slideDown();
+			let bmi_text = res.out;
+			if(bmi_text > 24){
+				bmi_text += " (偏重)";
+			}
+			else if(bmi_text > 17.8){
+				bmi_text += " (标准)";
+			}
+			else{
+				bmi_text += " (偏轻)";
+			}
+			$("#BMI").text(bmi_text).hide().slideDown();
 		}
 		else{
 			$("#BMI").hide();
