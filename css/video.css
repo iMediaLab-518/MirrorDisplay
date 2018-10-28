@@ -29,9 +29,9 @@ body{
 #level{
     width: 351px;
     height: 87px;
-    background-image: url("../res/1-star.png");
     background-repeat: no-repeat;
     float: left;
+    color: #ffffff;
 }
 
 #sign{

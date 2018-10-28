@@ -11,26 +11,43 @@ $(document).ready(function () {
    var video=document.getElementById('videoContent');
    var video1=$('#videoContent');
    var maxDuration;
-function hideDiv(){
-    $('#sign').hide();
-}
+   var flag=null;
+   var MH1=null;  //运动最大心率
+  var MH2=null;    //热身最大心率
 
+
+//热身最大心率
+    $.get('http://localhost:5000/data/MH2',data=>{
+        if(data.status==100){
+            MH2=data.out;
+        }
+    });
+
+    //运动最大心率
+    $.get('http://localhost:5000/data/MH1',data=>{
+        if(data.status==100){
+            MH1=data.out;
+        }
+    });
 //载入热身视频
 
 $.get("http://localhost:5000/sport/warmup",data=>{
     if(data.status==100){
-        video.setAttribute('src','../res/video/'+out[1]);
-        $('#level').value=data.out[2];
+        video1.append("<source src='../res/video/'"+data.out[1]+"type=video/mp4>")
+        flag=data.out[2];
         maxDuration=data.out[4];
         
     }
     video.addEventListener('ended',function(){  //判断热身视频是否结束
+        video1.empty();
         $('#sign').text("运动等级"+data.out[2]+","+"运动强度"+data.out[3]).show();
-        setTimeout(hideDiv(),5000);
+        setTimeout(function(){
+            $('#sign').text().hide();
+        },5000);
         $.get("http://localhost:5000/sport/start",data=>{      //载入运动视频
             if(data.status==100){
-                video.setAttribute('src','../res/video/'+data.out[1]);
-                $('#level').value=data.out[2];
+               video1.append("<source src='../res/video/'"+data.out[1]+"type=video/mp4>")
+               flag=data.out[2]
                 maxDuration=data.out[4];
             }
         });
@@ -38,68 +55,105 @@ $.get("http://localhost:5000/sport/warmup",data=>{
 
 
 });
+//判断心率
+    if(flag==0){
+        //载入心率 10s刷新一次
+        $.get('http://localhost:5000/heartrate',data=>{
+            if(data.status==100){
+                ID1=setInterval(function(){
+                    $('#heartCount').text(data.out);
+                    if(data.out>=MH2){
+                        $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
+                    }
+                    else{
+                        $('#sign').text("再坚持一下，燃烧你的卡路里，冲鸭").show();
+                    }
+                }),10000
+            }
+
+        });
+    }
+    else{
+        //载入心率 10s刷新一次
+        $.get('http://localhost:5000/heartrate',data=>{
+            if(data.status==100){
+                ID=setInterval(function(){
+                    $('#heartCount').text(data.out);
+                    if(data.out>=MH1){
+                        $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
+                    }
+                    else{
+                        $('#sign').text("再坚持一下，燃烧你的卡路里，冲鸭").show();
+                    }
+                }),10000
+            }
+
+        });
+
+    }
+    video.addEventListener('ended',function() {  //判断运动视频是否结束
+        video1.empty();
+
+        clearInterval(ID);
+    });
+
 //判断等级
 //level=0,热身
-if($('#level').value==0){
-    if(video.paly){
-        $('#level').css('background-image','../res/0-start.png');
-    }else if(video.pause){
-        $('#level').css('background-image','../res/0-start-w.png');
-    }
-    return;
-}
-//level=1
-if($('#level').value==1){
-    if(video.paly){
-        $('#level').css('background-image','../res/1-start.png');
-    }else if(video.pause){
-        $('#level').css('background-image','../res/1-start-w.png');
-    }
-    return;
-}
-//level=2
-if($('#level').value==1){
-    if(video.paly){
-        $('#level').css('background-image','../res/2-start.png');
-    }else if(video.pause){
-        $('#level').css('background-image','../res/2-start-w.png');
-    }
-    return;
-}
-//level=3
-if($('#level').value==3){
-    if(video.paly){
-        $('#level').css('background-image','../res/3-start.png');
-    }else if(video.pause){
-        $('#level').css('background-image','../res/3-start-w.png');
-    }
-    return;
-}
-//level=4
-if($('#level').value==4){
-    if(video.paly){
-        $('#level').css('background-image','../res/4-start.png');
-    }else if(video.pause){
-        $('#level').css('background-image','../res/4-start-w.png');
-    }
-    return;
-}
-//level=5
-if($('#level').value==5){
-    if(video.paly){
-        $('#level').css('background-image','../res/5-start.png');
-    }else if(video.pause){
-        $('#level').css('background-image','../res/5-start-w.png');
-    }
-    return;
+if(flag==0){
+  $('#level').text("热身阶段").show();
+
 }
 
-//载入心率
-$.get('http://localhost:5000/heartrate',data=>{
-if(data.status==100){
-    $('#heartCount').text(data.out);
+//level=1
+if(flag==1){
+    if(video.pause){
+        $('#level').css('background-image','../res/1-start-w.png');
+    }else{
+        $('#level').css('background-image','../res/1-start.png');
+    }
+
 }
-});
+//level=2
+if(flag==2){
+   if(video.pause){
+        $('#level').css('background-image','../res/2-start-w.png');
+    }
+    else{
+        $('#level').css('background-image','../res/2-start.png');
+    }
+
+}
+//level=3
+if(flag==3){
+
+   if(video.pause){
+        $('#level').css('background-image','../res/3-start-w.png');
+    }
+   else{
+       $('#level').css('background-image','../res/3-start.png');
+   }
+
+}
+//level=4
+if(flag==4){
+    if(video.pause){
+        $('#level').css('background-image','../res/4-start-w.png');
+    } else{
+        $('#level').css('background-image','../res/4-start.png');
+    }
+
+}
+//level=5
+if(flag==5){
+    if(video.pause){
+        $('#level').css('background-image','../res/5-start-w.png');
+    } else{
+        $('#level').css('background-image','../res/5-start.png');
+    }
+
+}
+
+
 
 
 //计时
