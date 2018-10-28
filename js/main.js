@@ -155,7 +155,7 @@ function resetBand() {
 			$.get("http://localhost:5000/util/initband", res => {
 
 			});
-		}
+		}  
 		else {
 			resetBand();
 		}
@@ -190,7 +190,7 @@ function getWeight() {
 function getBMI(){
 	$.get("http://localhost:5000/data/BMI",res=>{
 		if(res.status==100){
-			let bmi_text = res.out;
+			let bmi_text = parseInt(res.out*100)/100;//2位小数
 			if(bmi_text > 24){
 				bmi_text += " (偏重)";
 			}
