@@ -66,8 +66,9 @@ function fetchWeather() {
 		if (data.status == 100) {
 			//示例data.out=["阴","d02"]
 
-			//获取编码，映射图标??????
-			//$("#wea-icon").attr('src',"../res/weather-icon/"+data.out[1]+".png");
+			//获取编码，映射图标
+			//当前只有d/n 00 01 02 => 晴，多云，阴
+			$("#wea-icon").attr('src',"../res/weather-icon/"+data.out[1]+".png");
 
 			//获取描述文字
 			$("#wea-txt").text(data.out[0]);
