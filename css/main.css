@@ -14,6 +14,9 @@ body{
 	margin-top:0px;
 	padding-top: 50px;
 }	
+#greet-audio{
+	display: none;
+}
 #greeting img{
 	vertical-align:sub;
 	width: 65px;
@@ -78,7 +81,7 @@ body{
 	display: none;
 	transform: rotate(10deg);
 	margin-top: 0;
-	font-size: 60%;
+	font-size: 70%;
 }
 #scanning{
 	transform: rotate(10deg);
