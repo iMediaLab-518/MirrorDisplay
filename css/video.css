@@ -1,73 +1,75 @@
-* {
+*{
     margin: 0px;
     padding: 0px;
 }
 
-body {
-    width: 1920px;
+body{
+    width:1920px;
     height: 1080px;
-    transform: rotate(90deg) translate(960px, -120px);
+    transform: rotate(90deg) translate(960px,-120px);
     transform-origin: top;
-}
 
-#video {
+}
+#video{
     height: 100%;
     width: 100%;
     background-color: #000000;
+
+
+
 }
-
 /*头部*/
-
-#head {
+#head{
     padding-top: 10px;
     height: 115px;
     width: 100%;
     /*border: 1px solid #ffffff;*/
 }
 
-#level {
+#level{
     width: 351px;
     height: 87px;
     float: left;
-    color: rgb(255, 177, 39);
+    color: rgb(255,177,39);
     font-size: 48px;
     margin-left: 20px;
+    margin-top: 5px;
 }
 
-#sign {
+
+#sign{
     height: 90px;
-    width: 800px;
-    font-size: 48px;
+    width: 1200px;
+    text-align: center;
+    font-size:48px;
     font-family: "微软雅黑";
     font-weight: lighter;
     color: #ffffff;
     float: left;
-    margin: 10px 250px;
-    margin-bottom: 0px;
-}
+    margin-top:10px;
 
-#heartPic {
+}
+#heartPic{
     float: left;
     display: block;
-    height: 70px;
+    height:70px ;
     width: 80px;
     background-image: url("../res/heart.png");
     background-repeat: no-repeat;
-    background-size: contain;
+   background-size: contain;
     position: absolute;
     left: 1720px;
     margin-top: 15px;
-}
 
-#heartCount {
+}
+#heartCount{
     color: #FFAF0A;
     float: right;
-    font-size: 72px;
+    font-size:72px ;
     font-family: "华文细黑";
     margin-right: 30px;
 }
-
-#videoPlay {
+#videoPlay{
     margin: 0 auto;
     height: 855px;
     width: 1520px;
@@ -75,14 +77,12 @@ body {
 }
 
 /*底部进度条*/
-
-#foot {
+#foot{
     width: 1918px;
     height: 110px;
     /*border: 1px solid #ffffff;*/
 }
-
-#playBtn {
+#playBtn{
     width: 80px;
     height: 80px;
     background-image: url("../res/play.png");
@@ -95,48 +95,48 @@ body {
     background-color: transparent;
 }
 
-#timeBar {
+#timeBar{
     float: left;
     width: 1615px;
     height: 6px;
-    position: relative;
+    position:relative;
     top: 55px;
     z-index: 2;
     background-color: #999999;
 }
-
-#currentBar {
+#currentBar{
     width: 0px;
     height: 6px;
     border-radius: 2px;
-    background-color: rgb(255, 177, 39);
-    ;
+    background-color:rgb(255,177,39);
 }
 
-#timePass {
+#timePass{
     font-family: "微软雅黑";
-    color: rgb(255, 177, 39);
-    font-weight: bold;
+    color: rgb(255,177,39);
+    font-weight:bold ;
     font-size: 60px;
     float: right;
     margin-top: 15px;
     margin-right: 20px;
 }
 
-#pauseAlert {
+
+
+#pauseAlert{
     display: none;
-    height: 725px;
+    height:725px ;
     width: 1137px;
     background-image: url("../res/alertBg.png");
     margin: 0 auto;
     position: absolute;
     top: 180px;
     left: 390px;
-    border-radius: 40px;
+    border-radius:40px;
     color: #ffffff;
-}
 
-#alertBtn {
+}
+#alertBtn{
     border: none;
     background-color: transparent;
     width: 300px;
@@ -147,30 +147,28 @@ body {
     left: 200px;
     top: 170px;
 }
-
-#title {
+#title{
     font-size: 60px;
     font-family: "微软雅黑";
     position: absolute;
-    left: 510px;
+    left:510px;
     top: 195px;
     letter-spacing: 5px;
-}
 
-#sportTime {
+}
+#sportTime{
     font-size: 80px;
     font-family: "华文细黑";
     position: absolute;
-    left: 580px;
+    left:580px;
     top: 300px;
     letter-spacing: 5px;
 }
-
-#sign2 {
+#sign2{
     font-size: 50px;
     font-family: "微软雅黑";
     position: absolute;
-    left: 140px;
+    left:140px;
     top: 480px;
     letter-spacing: 5px;
 }
