@@ -19,7 +19,7 @@ function hideDiv(){
 
 $.get("http://localhost:5000/sport/warmup",data=>{
     if(data.status==100){
-        video.setAttribute('src','../res/video/'+out[1]);
+        video.setAttribute('src','../res/video/'+data.out[1]);
         $('#level').value=data.out[2];
         maxDuration=data.out[4];
         
@@ -41,55 +41,53 @@ $.get("http://localhost:5000/sport/warmup",data=>{
 //判断等级
 //level=0,热身
 if($('#level').value==0){
-    if(video.paly){
-        $('#level').css('background-image','../res/0-start.png');
-    }else if(video.pause){
-        $('#level').css('background-image','../res/0-start-w.png');
-    }
-    return;
+  $('#level').text("热身阶段").show();
 }
 //level=1
 if($('#level').value==1){
-    if(video.paly){
-        $('#level').css('background-image','../res/1-start.png');
-    }else if(video.pause){
+    if(video.pause){
         $('#level').css('background-image','../res/1-start-w.png');
+    }else{
+        $('#level').css('background-image','../res/1-start.png');
     }
     return;
 }
 //level=2
 if($('#level').value==1){
-    if(video.paly){
-        $('#level').css('background-image','../res/2-start.png');
-    }else if(video.pause){
+   if(video.pause){
         $('#level').css('background-image','../res/2-start-w.png');
+    }
+    else{
+        $('#level').css('background-image','../res/2-start.png');
     }
     return;
 }
 //level=3
 if($('#level').value==3){
-    if(video.paly){
-        $('#level').css('background-image','../res/3-start.png');
-    }else if(video.pause){
+
+   if(video.pause){
         $('#level').css('background-image','../res/3-start-w.png');
     }
+   else{
+       $('#level').css('background-image','../res/3-start.png');
+   }
     return;
 }
 //level=4
 if($('#level').value==4){
-    if(video.paly){
-        $('#level').css('background-image','../res/4-start.png');
-    }else if(video.pause){
+    if(video.pause){
         $('#level').css('background-image','../res/4-start-w.png');
+    } else{
+        $('#level').css('background-image','../res/4-start.png');
     }
     return;
 }
 //level=5
 if($('#level').value==5){
-    if(video.paly){
-        $('#level').css('background-image','../res/5-start.png');
-    }else if(video.pause){
+    if(video.pause){
         $('#level').css('background-image','../res/5-start-w.png');
+    } else{
+        $('#level').css('background-image','../res/5-start.png');
     }
     return;
 }
