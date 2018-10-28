@@ -1,90 +1,105 @@
-body{
-	margin:0px;
+body {
+	margin: 0px;
 	padding: 0px;
-	width:1080px;
-	height:1920px;
+	width: 1080px;
+	height: 1920px;
 	background: #000;
 	color: #fff;
 	font-size: 50px;
 }
-#greeting{
+
+#greeting {
 	text-align: center;
-	font-size:120%;
+	font-size: 120%;
 	margin-bottom: 50px;
-	margin-top:0px;
+	margin-top: 0px;
 	padding-top: 50px;
-}	
-#greet-audio{
+}
+
+#greet-audio {
 	display: none;
 }
-#greeting img{
-	vertical-align:sub;
+
+#greeting img {
+	vertical-align: sub;
 	width: 65px;
 	height: 65px;
 	margin: 0 1%;
 }
-#time{
+
+#time {
 	font-size: 150%;
 }
-#date{
+
+#date {
 	font-size: 75%;
 }
-#city-temporary{
+
+#city-temporary {
 	font-size: 80%;
 }
-#wea-other{
+
+#wea-other {
 	font-size: 60%;
 }
-#city{
+
+#city {
 	font-size: 50%;
 }
-#sug-text{
+
+#sug-text {
 	width: 90%;
 	margin-left: 8%;
 }
-#suggestion{
-	margin: 5% 10% 10% 10%; 
-	background: linear-gradient(to right,rgb(234,123,40),rgb(245,186,40));
+
+#suggestion {
+	margin: 5% 10% 10% 10%;
+	background: linear-gradient(to right, rgb(234, 123, 40), rgb(245, 186, 40));
 	border-radius: 60px 0 0 60px;
 	font-size: 60%;
 	padding: 20px 0px 20px 40px;
 }
-#suggestion div{
+
+#suggestion div {
 	/*用来修饰的div*/
-	background: linear-gradient(to left,rgba(234,123,40,0.8),rgba(245,186,40,0.1));
+	background: linear-gradient(to left, rgba(234, 123, 40, 0.8), rgba(245, 186, 40, 0.1));
 	width: 50%;
 	height: 40px;
 	/*border-radius: 50px 0 0 50px;*/
 	/*opacity: 0.5;*/
-	position:absolute;
+	position: absolute;
 	right: 0px;
 }
 
-#mirror{
+#mirror {
 	height: 1000px;
 	margin-top: 15%;
 	margin-bottom: 10%;
 }
-#outer-mirror{
+
+#outer-mirror {
 	/*正框*/
 	height: 90%;
-	margin:0% 1%;
-	border:18px rgb(234,123,40) solid;
+	margin: 0% 1%;
+	border: 18px rgb(234, 123, 40) solid;
 }
-#inner-mirror{
+
+#inner-mirror {
 	/*斜框*/
 	height: 100%;
-	transform: rotate(-10deg) ;
+	transform: rotate(-10deg);
 	border: 18px #ffffff solid;
 }
-#body-info{
+
+#body-info {
 	display: none;
 	transform: rotate(10deg);
 	margin-top: 0;
 	font-size: 70%;
 }
-#scanning{
+
+#scanning {
 	transform: rotate(10deg);
 	margin-top: 10%;
-	/*visibility: hidden*/;
+	/*visibility: hidden;*/
 }

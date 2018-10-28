@@ -69,7 +69,7 @@ function fetchWeather() {
 
 			//获取编码，映射图标
 			//当前只有d/n 00 01 02 => 晴，多云，阴
-			$("#wea-icon").attr('src',"../res/weather-icon/"+data.out[1]+".png");
+			$("#wea-icon").attr('src', "../res/weather-icon/" + data.out[1] + ".png");
 
 			//获取描述文字
 			$("#wea-txt").text(data.out[0]);
@@ -98,7 +98,7 @@ function scanning() {
 			if (res.out !== "unknown") {
 				current_user = res.out[0];
 				//clearInterval(S_ID);
-				if(S_ID) clearTimeout(S_ID);
+				if (S_ID) clearTimeout(S_ID);
 
 				//登录
 				login(current_user);
@@ -122,7 +122,7 @@ function scanning() {
 	});
 
 }
-function play_audio_by_id(audio_id){
+function play_audio_by_id(audio_id) {
 	let audio = document.getElementById(audio_id);
 	audio.muted = false;
 	audio.play();
@@ -141,9 +141,9 @@ function login(current_user) {
 
 	getWeight();
 
-	Heart_ID = setInterval(function(){
+	Heart_ID = setInterval(function () {
 		getHeartrate();
-	},1000*2);
+	}, 1000 * 2);
 
 }
 
@@ -158,7 +158,7 @@ function resetBand() {
 			$.get("http://localhost:5000/util/initband", res => {
 
 			});
-		}  
+		}
 		else {
 			resetBand();
 		}
@@ -169,7 +169,7 @@ function resetBand() {
 function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
-			$("#heartrate").text(res.out+" bpm").hide().slideDown();	
+			$("#heartrate").text(res.out + " bpm").hide().slideDown();
 		} else if (res.status == 206) {
 			//error => reset
 			resetBand();
@@ -189,22 +189,22 @@ function getWeight() {
 		}
 	});
 }
-function getBMI(){
-	$.get("http://localhost:5000/data/BMI",res=>{
-		if(res.status==100){
-			let bmi_text = parseInt(res.out*100)/100;//2位小数
-			if(bmi_text > 24){
+function getBMI() {
+	$.get("http://localhost:5000/data/BMI", res => {
+		if (res.status == 100) {
+			let bmi_text = parseInt(res.out * 100) / 100;//2位小数
+			if (bmi_text > 24) {
 				bmi_text += " (偏重)";
 			}
-			else if(bmi_text > 17.8){
+			else if (bmi_text > 17.8) {
 				bmi_text += " (标准)";
 			}
-			else{
+			else {
 				bmi_text += " (偏轻)";
 			}
 			$("#BMI").text(bmi_text).hide().slideDown();
 		}
-		else{
+		else {
 			$("#BMI").hide();
 		}
 	});
