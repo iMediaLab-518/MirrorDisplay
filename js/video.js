@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 $.get("http://localhost:5000/sport/warmup",data=>{
     if(data.status==100){
-        video1.append("<source src='../res/video/'"+data.out[1]+"type=video/mp4>")
+        video1.append("<source src='../res/video/"+data.out[1]+"' type='video/mp4'>")
         flag=data.out[2];
         maxDuration=data.out[4];
         
