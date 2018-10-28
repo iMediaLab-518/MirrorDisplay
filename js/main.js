@@ -125,7 +125,7 @@ function scanning() {
 function play_audio_by_id(audio_id){
 	let audio = document.getElementById(audio_id);
 	audio.muted = false;
-	audio,play();
+	audio.play();
 }
 function login(current_user) {
 
