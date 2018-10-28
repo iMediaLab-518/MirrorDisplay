@@ -1,11 +1,12 @@
 /**
  *
  * @authors Wang Ping
- * @date    2018-10-23
- * @version 1.5
+ * @date    2018-10-27
+ * @version 1.6
  *
  **/
-let S_ID;
+
+let S_ID;//scanning timeout id
 
 function fetchDateTime() {
 	//渲染日期+时间
@@ -121,25 +122,26 @@ function scanning() {
 	});
 
 }
-
+function play_audio_by_id(audio_id){
+	let audio = document.getElementById(audio_id);
+	audio.muted = false;
+	audio,play();
+}
 function login(current_user) {
 
 	//改变greeting
 	$("#greeting").text(current_user + " 你好:)");
-
-	let greet_audio = document.getElementById("greet-audio");
-	greet_audio.muted=false;
-	greet_audio.play();
+	//播放问候语音效
+	play_audio_by_id("greet-audio");
 	//隐藏扫描特效
 	$("#scanning").css('visibility', 'hidden');
-
+	//生理参数模块
 	$("#body-info").show();
 
 	getHeartrate();
-	//after 8s
-	setTimeout(function(){
-		getWeight();
-	},8*1000);
+
+	getWeight();
+
 }
 
 function Logout() {
@@ -164,7 +166,8 @@ function resetBand() {
 function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
-			$("#heartrate").text(res.out);
+			$("#heartrate").text(res.out).hide().slideDown();
+			resetBand();
 		} else if (res.status == 206) {
 			//error => reset
 			resetBand();
@@ -173,11 +176,24 @@ function getHeartrate() {
 }
 
 function getWeight() {
+	//获取体重和BMI
+
 	$.get("http://localhost:5000/weight", res => {
 		if (res.status == 100) {
-			$("#weight").text(res.out);
+			$("#weight").text(res.out).hide().slideDown();
+			getBMI();
 		} else {
 			getWeight();
+		}
+	});
+}
+function getBMI(){
+	$.get("http://localhost:5000/data/bmi",res=>{
+		if(res.status==100){
+			$("#BMI").text(res.out).hide().slideDown();
+		}
+		else{
+			$("#BMI").hide();
 		}
 	});
 }

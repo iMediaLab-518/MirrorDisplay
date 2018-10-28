@@ -23,6 +23,9 @@ body{
 	height: 65px;
 	margin: 0 1%;
 }
+#BMI{
+	display: none;
+}
 #time{
 	font-size: 150%;
 }
@@ -81,7 +84,7 @@ body{
 	display: none;
 	transform: rotate(10deg);
 	margin-top: 0;
-	font-size: 60%;
+	font-size: 70%;
 }
 #scanning{
 	transform: rotate(10deg);
