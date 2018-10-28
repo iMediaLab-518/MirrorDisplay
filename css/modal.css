@@ -1,0 +1,145 @@
+/*模态框*/
+#myModal{
+	height: 100%;
+	width: 100%;
+	/*background-color: #e9e9e9;*/
+	margin-top: 10px;
+	/*margin-left: 6%;*/
+	border-radius: 2em;
+	/*禁止滚动条滚动*/
+	overflow:hidden;
+	color: #cecece;
+}
+ 
+/*用户信息*/
+.information{
+	width: 25em;
+	margin-left: 25%;
+	position: relative;
+	/*top: -5em;*/
+}
+/*用户姓名*/
+.user-name{
+	margin-left: 34%;
+	/*margin-top: 60%;*/
+	/*text-align: center;*/
+	position: relative;
+	top: 29em;
+}
+.user-name-item{
+	color: #cecece;
+	font-size: 70px;
+}
+/*体重*/
+.user-weight{
+	margin-left: -10%;
+	margin-top: 119%;
+}
+.weight-item-value{
+	color: #cecece;
+	font-size: 30px;
+	position: relative;
+	left: 0.7em;
+	/*top: 0.3em;*/
+}
+.weight-item-txt{
+	color: #cecece;
+	font-size: 20px;
+	position: relative;
+	left: 1.5em;
+}
+/*身高*/
+.user-height{
+	margin-left: -15%;
+	margin-top: -84%;
+	display: flex;
+	justify-content: center;
+	flex-direction:column;
+
+}
+.height-item-value{
+	color: #cecece;
+	font-size: 30px;
+	position: relative;
+	left: 0.7em;
+	top: 0.3em;
+}
+.height-item-txt{
+	color: #cecece;
+	font-size: 20px;
+	position: relative;
+	left: 2.1em;	
+}
+/*BMI值*/
+.user-BMI{
+	margin-left: 96%;
+	margin-top: 25%;
+	display: flex;
+	/*align-items: center;*/
+	justify-content: center;
+	flex-direction:column;
+}
+.BMI-value{
+	color: #cecece;
+	font-size: 30px;
+	position: relative;
+	left: 0.3em;
+	top: 0.8em;
+}
+.BMI-txt{
+	color: #cecece;
+	font-size: 20px;
+	position: relative;
+	left: 0.4em;
+	top: 0.6em;	
+}
+.user-height,.user-weight{
+	/*display: inline-block;*/
+}
+/*运动信息*/
+.sports-data{
+	margin-left: 55%;
+	font-size: 3em;
+	margin-top: -4.5%;
+	
+}
+/*运动时长*/
+/*消耗卡路里*/
+/*平均心率*/
+/*坚持运动次数*/
+.sports-length,.Highest-heart-rate,.calorie,.Average-heart-rate{
+	margin-bottom: -0.4em;	
+	color: #cecece;
+}
+
+/*顶部提示*/
+.tips-after-sports{
+	color: #cecece;
+	text-align: center;
+	position: relative;
+	top: 11em;
+}
+.tips-item{
+	font-size: 75px;
+	color: #cecece;
+}
+/*底部提示*/
+.Mymodal-footer{
+	/*margin-left: 15%;*/
+	margin-top: 2%;
+	text-align: center;
+}
+.footer-tip1,.footer-tip-time,.footer-tip2{
+	color: #cecece;
+	font-size: 50px;
+	display: inline-block;
+}
+/*单位*/
+.unit{
+	font-family:"Lucida Console";
+}
+/*数字*/
+#sports-length-value,#heart-rate-item-value,#Highest-heart-rate-value,#calorie-value{
+	font-family: "Stencil";
+	font-size: 100px;
+}

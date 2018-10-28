@@ -5,6 +5,7 @@
     <title>视频播放</title>
     <link rel="stylesheet" href="../css/lib/bootstrap.css">
     <link rel="stylesheet" href="../css/video.css">
+    <link rel="stylesheet" href="../css/modal.css">
 </head>
 <body>
 <div id="video">
@@ -46,12 +47,140 @@
 </div>
 </div>
 
+<!--模态框-->
+<div id="myModal" style="background: url(../res/sports-report.png);" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <!--<div class="modal-header">-->
+  	<div class="Mymodal-header">
+    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="false">×</button>-->
+    <!--<h1 id="myModalLabel" style="text-align: center;color: white;" class="week">周二</h1>
+    <h4 style="text-align: center;color: white;" class="date"> 2018.10.23</h4>-->
+     <div class="tips-after-sports">
+     	<p class="tips-item">
+     		 恭喜你完成运动！
+     	</p>
+     </div>
+  </div>
+  <div class="Mymodal-body">
+  	<!--名字 + 体重+身高 ==》 圆-->
+  	<div class="information" style="height: 20em;color: white;">
+  	
+  	<!--<div class="information" style="background: url(Resource/touxiang.png) no-repeat;height: 20em;color: grey;">-->
+  		<div class="user-name" >
+  			<p class="user-name-item">
+  				姓 名
+  			</p>
+  		</div>
+  		<div class="user-weight">
+  			<p class="weight-item-value">
+  				48kg 
+  			</p>
+  			<p class="weight-item-txt">
+  				体重
+  			</p>
+  		</div>
+  		<div class="user-height">
+  			<p class="height-item-value">
+  				160cm
+  			</p>
+  			<p class="height-item-txt">
+  				 身高
+  			</p>
+  		</div>
+  		<div class="user-BMI">
+  			<p class="BMI-value">
+  				20
+  			</p>
+  			<p class="BMI-txt">
+  				BMI
+  			</p>
+  		</div>
+  	</div>
+  	<!--运动数据-->
+  	<div class="sports-data" style="color: white;">
+  		<!--运动时长-->
+	  	<div class="sports-length">
+	  		<span id="sports-length-txt">
+	  			本次运动时长
+	  		</span>
+	  		<span id="sports-length-value">
+	  			30
+	  		</span>
+	  		 <span class="unit">
+	  			min
+	  		</span>
+	  		<!--<h3> 30分钟</h3>-->
+	  	</div>
+	    <!--平均心率-->
+	    <div class="Average-heart-rate">
+	    		<span id="heart-rate-item-txt">
+	    			平均心率
+	    		</span>
+	    		<span id="heart-rate-item-value">
+	    			80
+	    		</span>
+	    		 <span class="unit">
+	  			bpm
+	  		</span>
+	    </div>
+	    <!--最高心率-->
+	    <div class="Highest-heart-rate">
+	    		<span id="Highest-heart-rate-txt">
+	    			最高心率
+	    		</span>
+	    		<span id="Highest-heart-rate-value">
+	    			130
+	    		</span>
+	    		 <span class="unit">
+	  			bpm
+	  		</span>
+	    </div>
+		<!--卡路里-->
+	     <div class="calorie">
+	     	<span id="calorie-txt">
+	  			消耗卡路里
+	  		</span>
+	    	    <span id="calorie-value">
+	    	    		100 
+	    	    </span>
+	    	    <span class="unit">
+	  			kcal
+	  		</span>
+	    </div>
+
+	    <!--坚持运动次数-->
+	    <!--<div class="sports-times" >
+	    		<span id="times-txt">
+	    			坚持运动次数：
+	    		</span>
+	    		<span id="times-value">
+	    			10次
+	    		</span>
+	    </div>-->
+  	</div>
+  	
+  </div>
+  <div class="Mymodal-footer">
+  	<p class="footer-tip1">
+  		本次运动将在	
+  	</p>
+	<p class="footer-tip-time">
+  		10	
+	</p>
+	<p class="footer-tip2">
+  		秒后自动退出	
+	</p>
+
+  </div>
+  
+</div>
+
 <!--js文件引入-->
 <script type="text/javascript" src="../js/lib/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../js/lib/jquery-3.3.1.js"></script>
 
 <script type="text/javascript" src="../js/lib/bootstrap.js"></script>
 <script type="text/javascript" src="../js/video.js"></script>
+<script type="text/javascript" src="../js/modal.js" ></script>
 
 
 </body>
