@@ -138,7 +138,7 @@ function login(current_user) {
 	//生理参数模块
 	$("#body-info").show();
 
-
+	getHeartrate();
 	getWeight();
 
 	Heart_ID = setInterval(function () {
@@ -155,15 +155,11 @@ function resetBand() {
 	$.get("http://localhost:5000/util/reset", res => {
 		if (res.status == 100) {
 			//reset success
-			$.get("http://localhost:5000/util/initband", res => {
-
-			});
 		}
 		else {
 			resetBand();
 		}
 	});
-
 }
 
 function getHeartrate() {
