@@ -58,16 +58,17 @@ body{
     background-repeat: no-repeat;
    background-size: contain;
     position: absolute;
-    left: 1710px;
+    left: 1700px;
     margin-top: 15px;
 
 }
 #heartCount{
+    width: 116px;
+    height: 102px;
     color: #FFAF0A;
     float: right;
     font-size:72px ;
     font-family: "华文细黑";
-    margin-right: 10px;
 }
 #videoPlay{
     margin: 0 auto;

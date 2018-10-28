@@ -105,11 +105,6 @@ $.get("http://localhost:5000/sport/warmup",data=>{
         });
 
     }
-    video.addEventListener('ended',function() {  //判断运动视频是否结束
-        video1.empty();
-
-        clearInterval(ID);
-    });
 
 //判断等级
 //level=0,热身
@@ -204,16 +199,16 @@ maxDuration=video.duration;
 
         }
                 );
-        if(video.paused){
+        if(video.paused) {
             $('#currentBar').css(
                 {
-                    'background-color':"rgb("+255+","+255+","+255+")"
+                    'background-color': "rgb(" + 255 + "," + 255 + "," + 255 + ")"
                 }
             )
+        }
             else{
                 $('#currentBar').css('background-color',"rgb("+255+","+177+","+39+")");
             }
-        }
         //console.log(current);
 
     });
