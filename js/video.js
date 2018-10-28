@@ -12,7 +12,7 @@ $(document).ready(function () {
    var video1=$('#videoContent');
    var maxDuration;
    //var level=null;
-    var level=$('level');
+    var level=$('#level');
    var MH1=null;  //运动最大心率
   var MH2=null;    //热身最大心率
 
@@ -34,8 +34,8 @@ $(document).ready(function () {
 
 $.get("http://localhost:5000/sport/warmup",data=>{
     if(data.status==100){
-        video1.append("<source src='../res/video/"+data.out[1]+"' type='video/mp4'>")
-        level.value=data.out[2];
+        video1.append("<source src='../res/video/"+data.out[1]+"' type='video/mp4'>");
+        level.val(data.out[2]);
         maxDuration=data.out[4];
         console.log(level.value);
         console.log(maxDuration);
@@ -49,8 +49,8 @@ $.get("http://localhost:5000/sport/warmup",data=>{
         },5000);
         $.get("http://localhost:5000/sport/start",data=>{      //载入运动视频
             if(data.status==100){
-               video1.append("<source src='../res/video/'"+data.out[1]+"type=video/mp4>")
-               level.value=data.out[2]
+               video1.append("<source src='../res/video/'"+data.out[1]+"type=video/mp4>");
+               level.val(data.out[2]);
                 maxDuration=data.out[4];
             }
         });
@@ -102,12 +102,12 @@ $.get("http://localhost:5000/sport/warmup",data=>{
 
 //判断等级
 //level=0,热身
-if(level.value!=0){
-    level.text().hide();
+if(level.val()!=0){
+    level.text("").hide();
 }
 
 //level=1
-if(level.value==1){
+if(level.val()==1){
     if(video.pause){
         level.css('background-image','../res/1-start-w.png');
     }else{
@@ -116,7 +116,7 @@ if(level.value==1){
 
 }
 //level=2
-if(level.value==2){
+if(level.val()==2){
    if(video.pause){
         level.css('background-image','../res/2-start-w.png');
     }
@@ -126,7 +126,7 @@ if(level.value==2){
 
 }
 //level=3
-if(level.value==3){
+if(level.val()==3){
 
    if(video.pause){
         level.css('background-image','../res/3-start-w.png');
