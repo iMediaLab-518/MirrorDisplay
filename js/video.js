@@ -41,13 +41,12 @@ $.get("http://localhost:5000/sport/warmup",data=>{
         console.log(level.val());
         console.log(maxDuration);
 
-    }
     video.addEventListener('ended',function(){  //判断热身视频是否结束
         video1.empty();
         $('#sign').text("运动等级:"+data.out[2]+","+"运动强度:"+data.out[3]).show();
         setTimeout(function(){
             $('#sign').text("").hide();
-        },5000);
+        },10000);
         $.get("http://localhost:5000/sport/start",data=>{      //载入运动视频
             if(data.status==100){
                video1.append("<source src='../res/video/"+data.out[1]+"' type=video/mp4>");
@@ -56,6 +55,7 @@ $.get("http://localhost:5000/sport/warmup",data=>{
             }
         });
     });
+    }
 
 
 });
@@ -64,7 +64,7 @@ $.get("http://localhost:5000/sport/warmup",data=>{
         //载入心率 10s刷新一次
         $.get('http://localhost:5000/heartrate',data=>{
             if(data.status==100){
-                ID=setInterval(function(){
+                setInterval(function(){
                     $('#heartCount').text(data.out);
                     if(data.out>=MH2) {                     //判断心率 提示信息
                         $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
@@ -86,7 +86,7 @@ $.get("http://localhost:5000/sport/warmup",data=>{
         //载入心率 10s刷新一次
         $.get('http://localhost:5000/heartrate',data=>{
             if(data.status==100){
-                ID=setInterval(function(){
+                setInterval(function(){
                     $('#heartCount').text(data.out);
                     if(data.out>=MH1){               //判断心率
                         $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
@@ -200,7 +200,7 @@ maxDuration=video.duration;
 
         $('#currentBar').css({
                 'width':current + "px",
-            'background-color':"rgb("+255+","+177+","+39+")"
+
 
         }
                 );
@@ -209,8 +209,10 @@ maxDuration=video.duration;
                 {
                     'background-color':"rgb("+255+","+255+","+255+")"
                 }
-            );
-            return;
+            )
+            else{
+                $('#currentBar').css('background-color',"rgb("+255+","+177+","+39+")");
+            }
         }
         //console.log(current);
 

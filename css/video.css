@@ -58,7 +58,7 @@ body{
     background-repeat: no-repeat;
    background-size: contain;
     position: absolute;
-    left: 1720px;
+    left: 1710px;
     margin-top: 15px;
 
 }
@@ -67,7 +67,7 @@ body{
     float: right;
     font-size:72px ;
     font-family: "华文细黑";
-    margin-right: 30px;
+    margin-right: 10px;
 }
 #videoPlay{
     margin: 0 auto;
