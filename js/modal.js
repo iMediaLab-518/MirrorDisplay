@@ -34,9 +34,9 @@
 		}, 1000);
 	}
 	// 倒计时结束之后自动退出到登陆界面
-	setTimeout(function () {
-		window.location.href = '../page/main.html';
-	}, 12000);
+	//setTimeout(function () {
+	//	window.location.href = '../page/main.html';
+	//}, 12000);
 
 	$('.Return').on('click', function (e) {
 		window.location.href = 'login.html';
