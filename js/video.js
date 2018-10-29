@@ -252,6 +252,12 @@ function getHeartrate(limit) {
                 );
             }
             else {
+                $('#sign').css(
+                    {
+                        'color': 'whtie',
+                        // 'font-size' :''
+                    }
+                );
                 $('#sign').text("再坚持一下，燃烧你的卡路里，冲鸭！").show();
             }
         }
