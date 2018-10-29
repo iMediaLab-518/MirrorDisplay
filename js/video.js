@@ -5,16 +5,16 @@
  * @version 1.5
  *
  **/
-    var video;
-    var video1;//$对象
-    var maxDuration;//当前视频总时长
-    //var level=null;
-    var level;
-    var MH1 = 999;   //运动最大心率
-    var MH2 = 999;   //热身最大心率
-    var ID;
-    var H1_ID; //id for 正式运动时获取心率的定时器
-    var H2_ID;//id for 热身时获取心率的定时器
+var video;
+var video1;//$对象
+var maxDuration;//当前视频总时长
+//var level=null;
+var level;
+var MH1 = 999;   //运动最大心率
+var MH2 = 999;   //热身最大心率
+var ID;
+var H1_ID; //id for 正式运动时获取心率的定时器
+var H2_ID;//id for 热身时获取心率的定时器
 
 $(document).ready(function () {
     video1 = $('#videoContent');
@@ -178,14 +178,19 @@ function loadWarmUpVideo() {
 
 function loadSportVideo() {
     //载入运动视频
-    $.get("http://localhost:5000/sport/start", data => {      
+    $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
             video1.append("<source src='../res/video/" + data.out[1] + "' type=video/mp4>");
             video.play();
             level.val(data.out[2]);
             maxDuration = data.out[4];
 
-            video1.bind("ended",onSportEnded);
+            $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+            setTimeout(function () {
+                $('#sign').text("").hide();
+            }, 10 * 1000);
+
+            video1.bind("ended", onSportEnded);
         }
     });
 }
@@ -195,13 +200,10 @@ function onWarmUpEnded() {
 
     video1.empty();
 
-    $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
-    setTimeout(function () {
-        $('#sign').text("").hide();
-    }, 10 * 1000);
-
     //载入运动视频
     loadSportVideo();
+
+    //解除绑定当前处理事件
     video1.unbind();
 
 }
