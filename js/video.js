@@ -1,8 +1,8 @@
 /**
  *
- * @authors Wang Yuanyuan
- * @date    2018-10-28
- * @version 1.4
+ * @authors Wang Yuanyuan & Wang Ping
+ * @date    2018-10-29
+ * @version 1.5
  *
  **/
 
@@ -84,59 +84,16 @@ $(document).ready(function () {
     if (level.val() != 0) {
         level.text("").hide();
     }
-
-    //level=1
-    if (level.val() == 1) {
-        if (video.pause) {
-            level.css('background-image', '../res/1-start-w.png');
-        } else {
-            level.css('background-image', '../res/1-start.png');
+    //level>1,正式运动
+    else{
+        if(video.pause){
+            level.css('background-image', '../res/'+level.val()+'-start-w.png');
         }
-
+        else{
+            level.css('background-image', '../res/'+level.val()+'-start.png');
+        }
     }
-    //level=2
-    if (level.val() == 2) {
-        if (video.pause) {
-            level.css('background-image', '../res/2-start-w.png');
-        }
-        else {
-            level.css('background-image', '../res/2-start.png');
-        }
-
-    }
-    //level=3
-    if (level.val() == 3) {
-
-        if (video.pause) {
-            level.css('background-image', '../res/3-start-w.png');
-        }
-        else {
-            level.css('background-image', '../res/3-start.png');
-        }
-
-    }
-    //level=4
-    if (level.val() == 4) {
-        if (video.pause) {
-            level.css('background-image', '../res/4-start-w.png');
-        } else {
-            level.css('background-image', '../res/4-start.png');
-        }
-
-    }
-    //level=5
-    if (level.val() == 5) {
-        if (video.pause) {
-            level.css('background-image', '../res/5-start-w.png');
-        } else {
-            level.css('background-image', '../res/5-start.png');
-        }
-
-    }
-
-
-
-
+ 
     //计时
     video1.on('timeupdate', function () {
         var s = parseInt(video.currentTime);   //秒
@@ -236,7 +193,7 @@ $(document).ready(function () {
 })
 
 /**
- * @author wp
+ * @author Wang Ping
  * @param {*} limit MH1/MH2
  */
 function getHeartrate(limit) {
