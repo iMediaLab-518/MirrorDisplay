@@ -114,14 +114,14 @@
 			}
 		});
 	}
-	//获取卡路里（后端接口暂时有bug，待修复）
-	//	function getCalorie(){
-	//		$.get("http://localhost:5000/??", data => {
-	//			if (data.status == 100) {
-	//				$("#calorie-value").text(data.out);
-	//			}
-	//		});	
-	//	}
+//	获取卡路里（后端接口暂时有bug，待修复）
+		function getCalorie(){
+			$.get("http://localhost:5000/sport/calorie", data => {
+				if (data.status == 100) {
+					$("#calorie-value").text(data.out);
+				}
+			});	
+		}
 	//获取最高心率
 	function getHighestHeartRate() {
 		$.get("http://localhost:5000/data/max_heartrate ", data => {
