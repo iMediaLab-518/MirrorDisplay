@@ -8,9 +8,9 @@
 
 (function ($) {
 	//视频结束后，显示模态框
-//		$("#movie").bind('ended',function(){
-	$('#myModal').modal('show');
-//		});
+	$("#videoContent").bind('ended',function(){
+		$('#myModal').modal('show');
+	});
 
 	//10秒倒计时
 	var intDiff = parseInt(10);//倒计时总秒数量
@@ -86,7 +86,6 @@
 			}
 		});	
 	}
-	
 	//BMI
 	function getUserBMI(){
 		$.get("http://localhost:5000/data/BMI", data => {
