@@ -139,12 +139,12 @@ function scanning() {
 								}
 							}
 
-							else {//其他错误 => 5s后再启动人脸识别登录
+							else {//其他错误 => 10s后再启动人脸识别登录
 								//301 = 没有检测到人脸
 
 								setTimeout(() => {
 									scanning();
-								}, 5 * 1000);
+								}, 10 * 1000);
 							}
 							//还原login=false
 							$.post("http://localhost:5000/message", { login: false }, res => {
