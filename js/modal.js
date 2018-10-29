@@ -1,16 +1,12 @@
 /**
  *
- * @authors He xi
- * @date    2018-10-26
- * @version 1.1
+ * @authors He xi & Wang Ping
+ * @date    2018-10-29
+ * @version 1.2
  *
  **/
 
 (function ($) {
-	//视频结束后，显示模态框
-	$("#videoContent").bind('ended',function(){
-		$('#myModal').modal('show');
-	});
 
 	//10秒倒计时
 	var intDiff = parseInt(10);//倒计时总秒数量
@@ -38,9 +34,6 @@
 	//	window.location.href = '../page/main.html';
 	//}, 12000);
 
-
-	//时间获取
-	fetchContext();
 	function fetchContext() { //右下角 日期时间的获取
 		let time = moment().format('HH:mm');
 		let second = moment().format(':ss');
@@ -65,11 +58,7 @@
 	}
 	let fetchTimer1 = window.setInterval(fetchContext, 1000);
 
-	//用户信息的获取
-	getUserName();
-	getUserHeight();
-	getUserBMI();
-	getUserWeight();
+	
 	//姓名
 	function getUserName(){
 		$.get("http://localhost:5000/login", data => {
@@ -103,11 +92,6 @@
 		});		
 	}
 	
-	//生理参数的获取
-	getSportsTime();
-	getHighestHeartRate();
-	getAverageHeartRate();
-
 	//获取运动时长
 	function getSportsTime() {
 		$.get("http://localhost:5000/sport/start ", data => {
@@ -141,6 +125,30 @@
 		});
 	}
 
+	function onSportEnded(){
+		//视频结束事件处理函数
 
+		//渲染modal
+
+		//时间获取
+		fetchContext();
+
+		//用户信息的获取
+		getUserName();
+		getUserHeight();
+		getUserBMI();
+		getUserWeight();
+
+		//运动时长
+		getSportsTime();
+
+		//生理参数的获取
+		getHighestHeartRate();
+		getAverageHeartRate();
+
+		
+		//show
+		$('#myModal').modal('show');
+	}
 
 })(jQuery)

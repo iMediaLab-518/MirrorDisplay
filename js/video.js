@@ -35,32 +35,7 @@ $(document).ready(function () {
     });
 
     //载入热身视频
-    $.get("http://localhost:5000/sport/warmup", data => {
-        if (data.status == 100) {
-            video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
-            level.val(data.out[2]);
-            maxDuration = data.out[4];
-            console.log(level.val());
-            console.log(maxDuration);
-
-            video.addEventListener('ended', function () {  //监听热身视频播放结束事件
-                console.log("warm up is done!");
-                video1.empty();
-                $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
-                setTimeout(function () {
-                    $('#sign').text("").hide();
-                }, 10*1000);
-                $.get("http://localhost:5000/sport/start", data => {      //载入运动视频
-                    if (data.status == 100) {
-                        video1.append("<source src='../res/video/" + data.out[1] + "' type=video/mp4>");
-                        video.play();
-                        level.val(data.out[2]);
-                        maxDuration = data.out[4];
-                    }
-                });
-            });
-        }
-    });
+    loadWarmUpVideo();
 
     //定时获取心率，并判断是否安全
     if (level.val() == 0) {
@@ -86,15 +61,15 @@ $(document).ready(function () {
         level.text("").hide();
     }
     //level>1,正式运动
-    else{
-        if(video.pause){
-            level.css('background-image', '../res/'+level.val()+'-start-w.png');
+    else {
+        if (video.pause) {
+            level.css('background-image', '../res/' + level.val() + '-start-w.png');
         }
-        else{
-            level.css('background-image', '../res/'+level.val()+'-start.png');
+        else {
+            level.css('background-image', '../res/' + level.val() + '-start.png');
         }
     }
- 
+
     //计时
     video1.on('timeupdate', function () {
         var s = parseInt(video.currentTime);   //秒
@@ -185,11 +160,53 @@ $(document).ready(function () {
 
 })
 
-/**
- * @author Wang Ping
- * @param {*} limit MH1/MH2
- */
+//载入热身视频
+function loadWarmUpVideo() {
+    $.get("http://localhost:5000/sport/warmup", data => {
+        if (data.status == 100) {
+            video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
+            level.val(data.out[2]);
+            maxDuration = data.out[4];
+            console.log(level.val());
+            console.log(maxDuration);
+
+            video1.bind("ended", onWarmUpEnded);//绑定事件
+
+        }
+    });
+}
+
+function loadSportVideo() {
+    //载入运动视频
+    $.get("http://localhost:5000/sport/start", data => {      
+        if (data.status == 100) {
+            video1.append("<source src='../res/video/" + data.out[1] + "' type=video/mp4>");
+            video.play();
+            level.val(data.out[2]);
+            maxDuration = data.out[4];
+
+            video1.bind("ended",onSportEnded);
+        }
+    });
+}
+function onWarmUpEnded() {
+    //热身视频播放结束事件的处理函数
+    console.log("warm up is done!");
+
+    video1.empty();
+
+    $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+    setTimeout(function () {
+        $('#sign').text("").hide();
+    }, 10 * 1000);
+
+    //载入运动视频
+    loadSportVideo();
+    video1.unbind();
+
+}
 function getHeartrate(limit) {
+    //获取心率
     $.get('http://localhost:5000/heartrate', data => {
         if (data.status == 100) {
             $('#heartCount').text(data.out);
