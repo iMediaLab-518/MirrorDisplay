@@ -102,14 +102,14 @@ function scanning() {
 			if (res.out["register"] === true) {
 
 				//隐藏登录扫描动效
-				$("scanning").hide();
+				$("#scanning").hide();
 				//边框*2 变黑色
 				$("#outer-mirror").css('borderColor','black');
 				$("#inner-mirror").css('borderColor','black');
 				//注册动效
 				$("#regging").fadeIn();
 				//top提示文字
-				$("#greeting").html('正在录入人脸……请将脸对准摄像头 :)');
+				$("#greeting").html('正在录入人脸...请将脸对准摄像头');
 
 				setTimeout(() => {
 					scanning();
@@ -118,12 +118,15 @@ function scanning() {
 			//没有注册冲突 => 启动登录
 			else {
 				//显示登录扫描动效
-				$("scanning").fadeIn();
+				$("#scanning").fadeIn();
 				//边框*2 变原来的颜色
 				$("#outer-mirror").css('borderColor','#EA7B28');
 				$("#inner-mirror").css('borderColor','white');
 				//注册动效
 				$("#regging").hide();
+				//top 提示文字
+				$("#greeting").html('正在扫描人脸...');
+
 
 				//更新消息字典
 				$.post("http://localhost:5000/message", { login: true }, res => {
