@@ -180,8 +180,14 @@ function loadSportVideo() {
     //载入运动视频
     $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
+            video1.empty();
             video1.append("<source src='../res/video/" + data.out[1] + "' type=video/mp4>");
             video.play();
+            console.log("sport is playing!");
+            $('#currentBar').css({
+                'width': "0px",
+            });
+
             level.val(data.out[2]);
             maxDuration = data.out[4];
 
@@ -190,15 +196,13 @@ function loadSportVideo() {
                 $('#sign').text("").hide();
             }, 10 * 1000);
 
-            video1.bind("ended", onSportEnded);
+            video1.bind("ended", $.onSportEnded);
         }
     });
 }
 function onWarmUpEnded() {
     //热身视频播放结束事件的处理函数
     console.log("warm up is done!");
-
-    video1.empty();
 
     //载入运动视频
     loadSportVideo();

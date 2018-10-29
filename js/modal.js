@@ -91,7 +91,7 @@
 			}
 		});		
 	}
-	
+
 	//获取运动时长
 	function getSportsTime() {
 		$.get("http://localhost:5000/sport/start ", data => {
@@ -150,5 +150,9 @@
 		//show
 		$('#myModal').modal('show');
 	}
+
+	return {	
+		onSportEnded:onSportEnded(),
+	};
 
 })(jQuery)
