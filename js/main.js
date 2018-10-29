@@ -98,14 +98,33 @@ function scanning() {
 	//获取消息字典
 	$.get("http://localhost:5000/message", res => {
 		if (res.status == 100) {
-			//正在注册 => 30s后再启动登录
+			//正在注册 => 出现注册动效 + 30s后再启动登录
 			if (res.out["register"] === true) {
+
+				//隐藏登录扫描动效
+				$("scanning").hide();
+				//边框*2 变黑色
+				$("#outer-mirror").css('border','black');
+				$("#inner-mirror").css('border','black');
+				//注册动效
+				$("#regging").fadeIn();
+				//top提示文字
+				$("#greeting").html('正在录入人脸……请将脸对准摄像头 :)');
+
 				setTimeout(() => {
 					scanning();
 				}, 30 * 1000);
 			}
 			//没有注册冲突 => 启动登录
 			else {
+				//显示登录扫描动效
+				$("scanning").fadeIn();
+				//边框*2 变原来的颜色
+				$("#outer-mirror").css('border','rgb(234, 123, 40)');
+				$("#inner-mirror").css('border','white');
+				//注册动效
+				$("#regging").hide();
+
 				//更新消息字典
 				$.post("http://localhost:5000/message", { login: true }, res => {
 					//更新login=true成功后再正式启动人脸识别登录
@@ -144,6 +163,9 @@ function play_audio_by_id(audio_id) {
 	audio.play();
 }
 function login(current_user) {
+
+	//以防万一
+	$("#regging").hide();
 
 	//改变greeting
 	$("#greeting").text(current_user + " 你好:)");

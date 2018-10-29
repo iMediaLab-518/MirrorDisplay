@@ -102,4 +102,32 @@ body {
 	transform: rotate(10deg);
 	margin-top: 10%;
 	/*visibility: hidden;*/
+	display: none;
+}
+#regging{
+	/* display: none; */
+	margin-top: 10%;
+	margin-left: 12%;
+}
+#reg-code{
+	transform: rotate(10deg);
+	position: absolute;
+	top:-130px;
+	left: 350px;	
+}
+#reg-line{
+	transform: rotate(10deg);
+	position: absolute;
+	top:-140px;
+	left:350px;
+}
+#reg-round{
+	transform: rotate(10deg);
+	position: absolute;
+	top:-140px;
+	left: 350px;
+
+}
+#reg-bg{
+	transform: rotate(10deg);
 }
