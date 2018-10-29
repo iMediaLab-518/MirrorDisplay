@@ -79,7 +79,8 @@
 	function getUserBMI(){
 		$.get("http://localhost:5000/data/BMI", data => {
 			if (data.status == 100) {
-				$(".BMI-value").text(data.out);
+				//保留2位小数
+				$(".BMI-value").text(parseInt(data.out*100)/100);
 			}
 		});		
 	}
@@ -96,13 +97,14 @@
 	function getSportsTime() {
 		$.get("http://localhost:5000/sport/start ", data => {
 			if (data.status == 100) {
-				$("#sports-length-value").text(data.out[4]);
+				//单位换成分钟并取整
+				$("#sports-length-value").text(parseInt(data.out[4]/60));
 			}
 		});
 	}
-	//获取卡路里
+	//获取卡路里（后端接口暂时有bug，待修复）
 	//	function getCalorie(){
-	//		$.get("http://localhost:5000/heartrate", data => {
+	//		$.get("http://localhost:5000/??", data => {
 	//			if (data.status == 100) {
 	//				$("#calorie-value").text(data.out);
 	//			}
@@ -120,7 +122,8 @@
 	function getAverageHeartRate() {
 		$.get("http://localhost:5000/data/avg_heartrate ", data => {
 			if (data.status == 100) {
-				$("#heart-rate-item-value").text(data.out);
+				//取整
+				$("#heart-rate-item-value").text(parseInt(data.out));
 			}
 		});
 	}
