@@ -61,7 +61,7 @@
 	
 	//姓名
 	function getUserName(){
-		$.get("http://localhost:5000/login", data => {
+		$.get("http://localhost:5000/user", data => {
 			if (data.status == 100) {
 				$(".user-name-item").text(data.out[0]);
 			}
@@ -69,9 +69,9 @@
 	}
 	//身高
 	function getUserHeight(){
-		$.get("http://localhost:5000/login", data => {
+		$.get("http://localhost:5000/user", data => {
 			if (data.status == 100) {
-				$(".height-item-value").text(data.out[0]+"cm");
+				$(".height-item-value").text(data.out[3]+"cm");
 			}
 		});	
 	}
