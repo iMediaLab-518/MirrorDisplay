@@ -10,8 +10,8 @@
     var maxDuration;//当前视频总时长
     //var level=null;
     var level;
-    var MH1 = null;  //运动最大心率
-    var MH2 = null;    //热身最大心率
+    var MH1 = 999;   //运动最大心率
+    var MH2 = 999;   //热身最大心率
     var ID;
     var H1_ID; //id for 正式运动时获取心率的定时器
     var H2_ID;//id for 热身时获取心率的定时器
