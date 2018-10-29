@@ -102,10 +102,9 @@ body {
 	transform: rotate(10deg);
 	margin-top: 10%;
 	/*visibility: hidden;*/
-	display: none;
 }
 #regging{
-	/* display: none; */
+	display: none;
 	margin-top: 10%;
 	margin-left: 12%;
 }
