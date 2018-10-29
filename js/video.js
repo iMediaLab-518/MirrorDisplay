@@ -16,6 +16,8 @@ $(document).ready(function () {
     var MH1 = null;  //运动最大心率
     var MH2 = null;    //热身最大心率
     var ID;
+    var H1_ID; //id for 正式运动时获取心率的定时器
+    var H2_ID;//id for 热身时获取心率的定时器
 
 
     //热身最大心率
@@ -61,49 +63,19 @@ $(document).ready(function () {
     });
     //判断心率
     if (level.val() == 0) {
-        //载入心率 10s刷新一次
-        setInterval(function () {
-            $.get('http://localhost:5000/heartrate', data => {
-                if (data.status == 100) {
-                    $('#heartCount').text(data.out);
-                    if (data.out >= MH2) {                     //判断心率 提示信息
-                        $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
-                        $('#sign').css(
-                            {
-                                'color': 'red',
-                                // 'font-size' :''
-                            }
-                        );
-                    }
-                    else {
-                        $('#sign').text("再坚持一下，燃烧你的卡路里，冲鸭！").show();
-                    }
-                }
-            });
-        }, 10 * 1000);
+        //载入心率 5s刷新一次
+        H2_ID = setInterval(function () {
+            getHeartrate(MH2);
+        }, 5 * 1000);
     }
     else {
-        //载入心率 10s刷新一次
-        $.get('http://localhost:5000/heartrate', data => {
-            if (data.status == 100) {
-                setInterval(function () {
-                    $('#heartCount').text(data.out);
-                    if (data.out >= MH1) {               //判断心率
-                        $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
-                    }
-                    else {
-                        $('#sign').text("再坚持一下，燃烧你的卡路里，冲鸭").show();
-                        $('#sign').css(
-                            {
-                                'color': 'red',
-                                // 'font-size' :''
-                            });
-                    }
-                }), 10000
-            }
+        //清除热身时候的定时器
+        clearInterval(H2_ID);
 
-        });
-
+        //载入心率 5s刷新一次
+        H1_ID = setInterval(function(){
+            getHeartrate(MH1);
+        },5*1000);
     }
 
     //判断等级
@@ -261,3 +233,27 @@ $(document).ready(function () {
     });
 
 })
+
+/**
+ * @author wp
+ * @param {*} limit MH1/MH2
+ */
+function getHeartrate(limit) {
+    $.get('http://localhost:5000/heartrate', data => {
+        if (data.status == 100) {
+            $('#heartCount').text(data.out);
+            if (data.out >= limit) {                     //判断心率 提示信息
+                $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
+                $('#sign').css(
+                    {
+                        'color': 'red',
+                        // 'font-size' :''
+                    }
+                );
+            }
+            else {
+                $('#sign').text("再坚持一下，燃烧你的卡路里，冲鸭！").show();
+            }
+        }
+    });
+}
