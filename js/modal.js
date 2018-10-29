@@ -56,7 +56,7 @@
 		$(".week").text(week);
 		$(".date").text(date);
 	}
-	let fetchTimer1 = window.setInterval(fetchContext, 1000);
+	//let fetchTimer1 = window.setInterval(fetchContext, 1000);
 
 	
 	//姓名
