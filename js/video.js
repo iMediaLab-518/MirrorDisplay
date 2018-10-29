@@ -182,7 +182,7 @@ function loadSportVideo() {
         if (data.status == 100) {
             video1.empty();
             video1.append("<source src='../res/video/" + data.out[1] + "' type=video/mp4>");
-            video.play();
+            //video.play();
             console.log("sport is playing!");
             $('#currentBar').css({
                 'width': "0px",

@@ -97,8 +97,8 @@
 			date_str += "0";
 		}
 		date_str += date.getDate();//日
-		
-		$.get("http://localhost:5000/weight?text="+data_str, data => {
+
+		$.get("http://localhost:5000/weight?text="+date_str, data => {
 			if (data.status == 100) {
 				$(".weight-item-value").text(data.out+"kg");
 			}
