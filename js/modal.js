@@ -86,7 +86,19 @@
 	}
 	//体重
 	function getUserWeight(){
-		$.get("http://localhost:5000/weight", data => {
+		let date = new Date();
+		//构造年月日字符串 20181029，作为get的参数
+		let date_str = ""+date.getFullYear();//年
+		if(date.getMonth()+1<10){
+			date_str += "0";
+		}
+		date_str += (date.getMonth()+1);//月
+		if(date.getDate()<10){
+			date_str += "0";
+		}
+		date_str += date.getDate();//日
+		
+		$.get("http://localhost:5000/weight?text="+data_str, data => {
 			if (data.status == 100) {
 				$(".weight-item-value").text(data.out+"kg");
 			}
