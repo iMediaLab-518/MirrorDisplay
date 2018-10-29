@@ -255,7 +255,7 @@ function getHeartrate(limit) {
             else {
                 $('#sign').css(
                     {
-                        'color': 'whtie',
+                        'color': 'white',
                         // 'font-size' :''
                     }
                 );
