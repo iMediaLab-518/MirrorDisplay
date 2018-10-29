@@ -1,8 +1,8 @@
 /**
  *
- * @authors Wang Yuanyuan
- * @date    2018-10-23
- * @version 1.2
+ * @authors Wang Yuanyuan & Wang Ping
+ * @date    2018-10-29
+ * @version 1.3
  *
  **/
 
@@ -60,26 +60,26 @@ $(document).ready(function () {
         }
     });
 
-//出生年份
+    //出生年份
 
-for (let i = startYear; i <= endYear; i++) {
-    // console.log(i);
-    $('#yearBirth').append("<option value='" + i + "'>" + i + " 年</option>");
-};
-$('#yearBirth').click(function () {
-    $(this).css({ 'color': '#000000' });
+    for (let i = startYear; i <= endYear; i++) {
+        // console.log(i);
+        $('#yearBirth').append("<option value='" + i + "'>" + i + " 年</option>");
+    };
+    $('#yearBirth').click(function () {
+        $(this).css({ 'color': '#000000' });
 
-});
-//身高
+    });
+    //身高
 
-for (let j = startHeight; j <= endHeight; j++) {
-    // console.log(j);
-    $('#inputHeight').append("<option value='" + j + "'>" + j + " cm</option>");
-};
-$('#inputHeight').click(function () {
-    $(this).css({ 'color': '#000000' })
+    for (let j = startHeight; j <= endHeight; j++) {
+        // console.log(j);
+        $('#inputHeight').append("<option value='" + j + "'>" + j + " cm</option>");
+    };
+    $('#inputHeight').click(function () {
+        $(this).css({ 'color': '#000000' })
 
-});
+    });
 })
 
 function register(name, gender, year, height) {
