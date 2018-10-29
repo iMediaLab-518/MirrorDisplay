@@ -160,6 +160,7 @@
 		//生理参数的获取
 		getHighestHeartRate();
 		getAverageHeartRate();
+		getCalorie();
 
 		
 		//show
