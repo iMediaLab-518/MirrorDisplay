@@ -60,8 +60,6 @@ $(document).ready(function () {
                 });
             });
         }
-
-
     });
 
     //定时获取心率，并判断是否安全
@@ -104,8 +102,6 @@ $(document).ready(function () {
         if (s >= 60) {
             m = parseInt(s / 60);
             s = parseInt(s % 60);
-
-
         }
         if (s == 60) {
             console.log(1);
@@ -128,8 +124,6 @@ $(document).ready(function () {
 
         $('#currentBar').css({
             'width': current + "px",
-
-
         }
         );
         if (video.paused) {
@@ -143,7 +137,6 @@ $(document).ready(function () {
             $('#currentBar').css('background-color', "rgb(" + 255 + "," + 177 + "," + 39 + ")");
         }
         //console.log(current);
-
     });
 
     //开始/暂停控制按钮
@@ -159,7 +152,6 @@ $(document).ready(function () {
             $('#heartPic').css("background-image", "url(../res/heart.png)");
             $(this).css("background-image", "url(../res/play.png)");
             video.play();
-
         }
         //暂停
         else {
@@ -172,8 +164,6 @@ $(document).ready(function () {
             $('#heartPic').css("background-image", "url(../res/heart-w.png)");
             $(this).css("background-image", "url(../res/pause.png)");
             video.pause();
-
-
         }
         // console.log(11111);
         return false;
