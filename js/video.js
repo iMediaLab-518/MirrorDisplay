@@ -63,19 +63,19 @@ $(document).ready(function () {
     });
     //判断心率
     if (level.val() == 0) {
-        //载入心率 5s刷新一次
+        //载入心率 3s刷新一次
         H2_ID = setInterval(function () {
             getHeartrate(MH2);
-        }, 5 * 1000);
+        }, 3 * 1000);
     }
     else {
         //清除热身时候的定时器
         clearInterval(H2_ID);
 
-        //载入心率 5s刷新一次
-        H1_ID = setInterval(function(){
+        //载入心率 3s刷新一次
+        H1_ID = setInterval(function () {
             getHeartrate(MH1);
-        },5*1000);
+        }, 3 * 1000);
     }
 
     //判断等级
