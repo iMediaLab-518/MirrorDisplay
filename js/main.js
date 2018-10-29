@@ -104,8 +104,8 @@ function scanning() {
 				//隐藏登录扫描动效
 				$("scanning").hide();
 				//边框*2 变黑色
-				$("#outer-mirror").css('border','black');
-				$("#inner-mirror").css('border','black');
+				$("#outer-mirror").css('borderColor','black');
+				$("#inner-mirror").css('borderColor','black');
 				//注册动效
 				$("#regging").fadeIn();
 				//top提示文字
@@ -120,8 +120,8 @@ function scanning() {
 				//显示登录扫描动效
 				$("scanning").fadeIn();
 				//边框*2 变原来的颜色
-				$("#outer-mirror").css('border','rgb(234, 123, 40)');
-				$("#inner-mirror").css('border','white');
+				$("#outer-mirror").css('borderColor','#EA7B28');
+				$("#inner-mirror").css('borderColor','white');
 				//注册动效
 				$("#regging").hide();
 
