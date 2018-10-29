@@ -10,7 +10,7 @@
 $(document).ready(function () {
     var video = document.getElementById('videoContent');
     var video1 = $('#videoContent');
-    var maxDuration;
+    var maxDuration;//当前视频总时长
     //var level=null;
     var level = $('#level');
     var MH1 = null;  //运动最大心率
@@ -20,21 +20,21 @@ $(document).ready(function () {
     var H2_ID;//id for 热身时获取心率的定时器
 
 
-    //热身最大心率
+    //获取热身时最大安全心率
     $.get('http://localhost:5000/data/MH2', data => {
         if (data.status == 100) {
             MH2 = data.out;
         }
     });
 
-    //运动最大心率
+    //获取正式运动时最大安全心率
     $.get('http://localhost:5000/data/MH1', data => {
         if (data.status == 100) {
             MH1 = data.out;
         }
     });
-    //载入热身视频
 
+    //载入热身视频
     $.get("http://localhost:5000/sport/warmup", data => {
         if (data.status == 100) {
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
@@ -43,15 +43,17 @@ $(document).ready(function () {
             console.log(level.val());
             console.log(maxDuration);
 
-            video.addEventListener('ended', function () {  //判断热身视频是否结束
+            video.addEventListener('ended', function () {  //监听热身视频播放结束事件
+                console.log("warm up is done!");
                 video1.empty();
                 $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
                 setTimeout(function () {
                     $('#sign').text("").hide();
-                }, 10000);
+                }, 10*1000);
                 $.get("http://localhost:5000/sport/start", data => {      //载入运动视频
                     if (data.status == 100) {
                         video1.append("<source src='../res/video/" + data.out[1] + "' type=video/mp4>");
+                        video.play();
                         level.val(data.out[2]);
                         maxDuration = data.out[4];
                     }
@@ -61,7 +63,8 @@ $(document).ready(function () {
 
 
     });
-    //判断心率
+
+    //定时获取心率，并判断是否安全
     if (level.val() == 0) {
         getHeartrate(MH2);
         //载入心率 3s刷新一次
@@ -79,7 +82,7 @@ $(document).ready(function () {
         }, 3 * 1000);
     }
 
-    //判断等级
+    //判断视频等级 
     //level=0,热身
     if (level.val() != 0) {
         level.text("").hide();
