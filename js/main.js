@@ -92,35 +92,51 @@ function fetchWeather() {
 }
 
 function scanning() {
-	//扫描人脸
-	$.get("http://localhost:5000/login", res => {
-		if (res.status == 100) {
-			if (res.out !== "unknown") {
-				current_user = res.out[0];
-				//clearInterval(S_ID);
-				if (S_ID) clearTimeout(S_ID);
 
-				//登录
-				login(current_user);
-			} else {
-				//未知用户
-				$("#greeting").html('新用户您好，请扫码进行注册<img src="../res/regrcode.png" alt="" >');
+	//扫描人脸
+
+	//获取消息字典
+	$.get("http://localhost:5000/message", res => {
+		if (res.status == 100) {
+			//正在注册 => 30s后再启动登录
+			if (res.out["register"] === true) {
+				setTimeout(() => {
+					scanning();
+				}, 30 * 1000);
 			}
-		} else if (res.status == 301) {
-			//err:没有检测到人脸
-			//10s后再扫描一次
-			S_ID = setTimeout(function () {
-				scanning();
-			}, 1000 * 10);
-		} else {
-			//unknow err
-			//10s后再扫描一次
-			S_ID = setTimeout(function () {
-				scanning();
-			}, 1000 * 10);
+			//没有注册冲突 => 启动登录
+			else {
+				//更新消息字典
+				$.post("http://localhost:5000/message", { login: true }, res => {
+					//更新login=true成功后再正式启动人脸识别登录
+					if (res.status == 100) {
+						$.get("http://localhost:5000/login", res => {
+							if (res.status == 100) {
+								if (res.out !== "unknown") {//已注册用户
+									login(res.out[0]);
+								}
+								else {//未知用户
+									$("#greeting").html('新用户您好，请扫码进行注册<img src="../res/regrcode.png" alt="" >');
+								}
+							}
+
+							else {//其他错误 => 5s后再启动人脸识别登录
+								//301 = 没有检测到人脸
+
+								setTimeout(() => {
+									scanning();
+								}, 5 * 1000);
+							}
+							//还原login=false
+							$.post("http://localhost:5000/message", { login: false }, res => {
+								//...nothing
+							});
+						});
+					}
+				});
+			}
 		}
 	});
-
 }
 function play_audio_by_id(audio_id) {
 	let audio = document.getElementById(audio_id);
@@ -165,8 +181,8 @@ function resetBand() {
 function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
-			$("#heartrate").css('opacity','0');
-			$("#heartrate").text(res.out + " bpm").animate('opacity','1');
+			$("#heartrate").css('opacity', '0');
+			$("#heartrate").text(res.out + " bpm").animate('opacity', '1');
 		} else if (res.status == 206) {
 			//error => reset
 			resetBand();
