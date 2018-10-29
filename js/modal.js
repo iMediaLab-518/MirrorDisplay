@@ -131,7 +131,7 @@
 		//渲染modal
 
 		//时间获取
-		fetchContext();
+		//fetchContext();
 
 		//用户信息的获取
 		getUserName();

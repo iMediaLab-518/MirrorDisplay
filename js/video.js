@@ -5,21 +5,21 @@
  * @version 1.5
  *
  **/
-
-
-$(document).ready(function () {
-    var video = document.getElementById('videoContent');
-    var video1 = $('#videoContent');
+    var video;
+    var video1;//$对象
     var maxDuration;//当前视频总时长
     //var level=null;
-    var level = $('#level');
+    var level;
     var MH1 = null;  //运动最大心率
     var MH2 = null;    //热身最大心率
     var ID;
     var H1_ID; //id for 正式运动时获取心率的定时器
     var H2_ID;//id for 热身时获取心率的定时器
 
-
+$(document).ready(function () {
+    video1 = $('#videoContent');
+    video = document.getElementById('videoContent');
+    level = $('#level');
     //获取热身时最大安全心率
     $.get('http://localhost:5000/data/MH2', data => {
         if (data.status == 100) {
