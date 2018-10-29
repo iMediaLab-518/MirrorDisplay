@@ -165,7 +165,8 @@ function resetBand() {
 function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
-			$("#heartrate").text(res.out + " bpm").hide().slideDown();
+			$("#heartrate").css('opacity','0');
+			$("#heartrate").text(res.out + " bpm").animate('opacity','1');
 		} else if (res.status == 206) {
 			//error => reset
 			resetBand();
