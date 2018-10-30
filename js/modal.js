@@ -98,7 +98,7 @@
 		}
 		date_str += date.getDate();//日
 
-		$.get("http://localhost:5000/weight?text="+date_str, data => {
+		$.get("http://localhost:5000/data/weight?text="+date_str, data => {
 			if (data.status == 100) {
 				$(".weight-item-value").text(data.out+"kg");
 			}
@@ -114,11 +114,11 @@
 			}
 		});
 	}
-//	获取卡路里（后端接口暂时有bug，待修复）
+//	获取卡路里
 		function getCalorie(){
 			$.get("http://localhost:5000/sport/calorie", data => {
 				if (data.status == 100) {
-					$("#calorie-value").text(data.out);
+					$("#calorie-value").text(parseInt(data.out*10)/10);
 				}
 			});	
 		}
