@@ -230,7 +230,8 @@ function getWeight() {
 	resetBand();
 	$.get("http://localhost:5000/weight", res => {
 		if (res.status == 100) {
-			$("#weight").text(res.out).hide().slideDown();
+			$("#weight").css('opacity','0');
+			$("#weight").text(res.out).animate({ 'opacity': '1' });
 			getBMI();
 		} else {
 			getWeight();
@@ -240,6 +241,7 @@ function getWeight() {
 function getBMI() {
 	$.get("http://localhost:5000/data/BMI", res => {
 		if (res.status == 100) {
+			$("#BMI").css('opacity','0');
 			let bmi_text = parseInt(res.out * 100) / 100;//2位小数
 			if (bmi_text > 24) {
 				bmi_text += " (偏重)";
@@ -250,7 +252,7 @@ function getBMI() {
 			else {
 				bmi_text += " (偏轻)";
 			}
-			$("#BMI").text(bmi_text).hide().slideDown();
+			$("#BMI").text(bmi_text).animate({ 'opacity': '1' });
 		}
 		else {
 			$("#BMI").hide();
