@@ -1,8 +1,8 @@
 /**
  *
  * @authors Wang Ping
- * @date    2018-10-27
- * @version 1.6
+ * @date    2018-10-30
+ * @version 1.7
  *
  **/
 
@@ -150,8 +150,9 @@ function scanning() {
 
 							else {//其他错误 => 10s后再启动人脸识别登录
 								//301 = 没有检测到人脸
+								$("#greeting").html('请扫码注册<img src="../res/regrcode.png" alt="" >');
 
-								setTimeout(() => {
+								setTimeout(() => {	
 									scanning();
 								}, 10 * 1000);
 							}
