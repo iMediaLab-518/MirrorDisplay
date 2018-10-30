@@ -169,7 +169,7 @@ function loadWarmUpVideo() {
             maxDuration = data.out[4];
             console.log(level.val());
             console.log(maxDuration);
-video.addEventListener('ended',onWarmUpEnded());
+video.addEventListener('ended',onWarmUpEnded);
             //video1.bind("ended", onWarmUpEnded);//绑定事件
 
         }
@@ -179,7 +179,7 @@ function onWarmUpEnded() {
     //热身视频播放结束事件的处理函数
     console.log("warm up is done!");
 video1.empty();
-
+console.log(video);
     //载入运动视频
     loadSportVideo();
 
@@ -189,14 +189,15 @@ video1.empty();
 }
 function loadSportVideo() {
     //提示本次运动强度
-    $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
-    setTimeout(function () {
-        $('#sign').text("").hide();
-    }, 10 * 1000);
+
     //载入运动视频
     $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
           $('#timePass').text('00:00');
+            $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+            setTimeout(function () {
+                $('#sign').text("").hide();
+            }, 10 * 1000);
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
             video.play();
             console.log("sport is playing!");
