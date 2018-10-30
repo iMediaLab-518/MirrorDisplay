@@ -8,6 +8,12 @@
 
 let S_ID;//scanning timeout id
 
+
+$(document).ready(function(){
+	fetchContent();
+	scanning();
+});
+
 function fetchDateTime() {
 	//渲染日期+时间
 	let ch_weekday = ['日', '一', '二', '三', '四', '五', '六'];
@@ -207,7 +213,7 @@ function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
 			$("#heartrate").css('opacity', '0');
-			$("#heartrate").text(res.out + " bpm").animate('opacity', '1');
+			$("#heartrate").text(res.out + " bpm").animate({'opacity' :'1'});
 		} else if (res.status == 206) {
 			//error => reset
 			resetBand();
@@ -262,10 +268,3 @@ function fetchContent() {
 		fetchDateTime();
 	}, 1000 * 60);
 }
-
-fetchContent();
-scanning();
-//每10s检测人脸
-// S_ID = setInterval(() => {
-//	  scanning();
-// 	}, 1000*10);
