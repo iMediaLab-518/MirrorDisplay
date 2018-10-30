@@ -169,20 +169,36 @@ function loadWarmUpVideo() {
             maxDuration = data.out[4];
             console.log(level.val());
             console.log(maxDuration);
-
-            video1.bind("ended", onWarmUpEnded);//绑定事件
+video.addEventListener('ended',onWarmUpEnded());
+            //video1.bind("ended", onWarmUpEnded);//绑定事件
 
         }
     });
 }
+function onWarmUpEnded() {
+    //热身视频播放结束事件的处理函数
+    console.log("warm up is done!");
+video1.empty();
 
+    //载入运动视频
+    loadSportVideo();
+
+    // //解除绑定当前处理事件
+    // video1.unbind();
+
+}
 function loadSportVideo() {
+    //提示本次运动强度
+    $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+    setTimeout(function () {
+        $('#sign').text("").hide();
+    }, 10 * 1000);
     //载入运动视频
     $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
-            video1.empty();
+          $('#timePass').text('00:00');
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
-            //video.play();
+            video.play();
             console.log("sport is playing!");
             $('#currentBar').css({
                 'width': "0px",
@@ -191,26 +207,12 @@ function loadSportVideo() {
             level.val(data.out[2]);
             maxDuration = data.out[4];
 
-            $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
-            setTimeout(function () {
-                $('#sign').text("").hide();
-            }, 10 * 1000);
-
             video1.bind("ended", $.onSportEnded);
         }
     });
+    console.log(level.val());
 }
-function onWarmUpEnded() {
-    //热身视频播放结束事件的处理函数
-    console.log("warm up is done!");
 
-    //载入运动视频
-    loadSportVideo();
-
-    //解除绑定当前处理事件
-    video1.unbind();
-
-}
 function getHeartrate(limit) {
     //获取心率
     $.get('http://localhost:5000/heartrate', data => {
