@@ -136,7 +136,7 @@ function scanning() {
 
 				//更新消息字典
 				$.post("http://localhost:5000/message", { login: true }, res => {
-					//更新login=true成功后 隔2s 再正式启动人脸识别登录 等待摄像头关闭
+					//更新login=true成功后 隔3s 再正式启动人脸识别登录 等待摄像头关闭
 					if (res.status == 100) {
 						setTimeout(() => {
 							$.get("http://localhost:5000/login", res => {
@@ -162,7 +162,7 @@ function scanning() {
 									//...nothing
 								});
 							});
-						}, 2 * 1000);
+						}, 3 * 1000);
 
 					}
 				});
@@ -249,6 +249,7 @@ function getBMI() {
 			else if (bmi_text > 17.8) {
 				bmi_text += " (标准)";
 			}
+
 			else {
 				bmi_text += " (偏轻)";
 			}

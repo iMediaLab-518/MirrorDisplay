@@ -92,7 +92,7 @@ function register(name, gender, year, height) {
                         "register": true
                     }
                     , data => {
-                        if (data.status == 100) {//更新register=true成功后 隔2s再执行注册 ：等摄像头关闭
+                        if (data.status == 100) {//更新register=true成功后 隔3s再执行注册 ：等摄像头关闭
                             setTimeout(() => {
                                 $.post("http://192.168.2.244:5000/register",
                                     {
@@ -127,7 +127,7 @@ function register(name, gender, year, height) {
                                             //nothing...
                                         });
                                     });
-                            }, 2 * 1000);
+                            }, 3 * 1000);
                         }
                     });
             }
