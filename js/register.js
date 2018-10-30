@@ -83,11 +83,11 @@ $(document).ready(function () {
 })
 
 function register(name, gender, year, height) {
-    $.get('http://localhost:5000/message', data => {
+    $.get('http://192.168.2.244:5000/message', data => {
         if (data.status == 100) {
             if (data.out['login'] !== true) {       //若用户没有在登录，不冲突，执行注册逻辑
                 //更新消息字典
-                $.post('http://localhost:5000/message',
+                $.post('http://192.168.2.244:5000/message',
                     {
                         "register": true
                     }
@@ -122,7 +122,7 @@ function register(name, gender, year, height) {
                                         $('#registerBtn').text('注册');
                                     }
                                     //还原register=false
-                                    $.post("http://localhost:5000/message", { register: false }, res => {
+                                    $.post("http://192.168.2.244:5000/message", { register: false }, res => {
                                         //nothing...
                                     });
                                 });
