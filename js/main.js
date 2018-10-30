@@ -9,7 +9,7 @@
 let S_ID;//scanning timeout id
 
 
-$(document).ready(function(){
+$(document).ready(function () {
 	fetchContent();
 	scanning();
 });
@@ -110,8 +110,8 @@ function scanning() {
 				//隐藏登录扫描动效
 				$("#scanning").hide();
 				//边框*2 变黑色
-				$("#outer-mirror").css('borderColor','black');
-				$("#inner-mirror").css('borderColor','black');
+				$("#outer-mirror").css('borderColor', 'black');
+				$("#inner-mirror").css('borderColor', 'black');
 				//注册动效
 				$("#regging").fadeIn();
 				//top提示文字
@@ -126,8 +126,8 @@ function scanning() {
 				//显示登录扫描动效
 				$("#scanning").fadeIn();
 				//边框*2 变原来的颜色
-				$("#outer-mirror").css('borderColor','#EA7B28');
-				$("#inner-mirror").css('borderColor','white');
+				$("#outer-mirror").css('borderColor', '#EA7B28');
+				$("#inner-mirror").css('borderColor', 'white');
 				//注册动效
 				$("#regging").hide();
 				//top 提示文字
@@ -136,31 +136,34 @@ function scanning() {
 
 				//更新消息字典
 				$.post("http://localhost:5000/message", { login: true }, res => {
-					//更新login=true成功后再正式启动人脸识别登录
+					//更新login=true成功后 隔2s 再正式启动人脸识别登录 等待摄像头关闭
 					if (res.status == 100) {
-						$.get("http://localhost:5000/login", res => {
-							if (res.status == 100) {
-								if (res.out !== "unknown") {//已注册用户
-									login(res.out[0]);
+						setTimeout(() => {
+							$.get("http://localhost:5000/login", res => {
+								if (res.status == 100) {
+									if (res.out !== "unknown") {//已注册用户
+										login(res.out[0]);
+									}
+									else {//未知用户
+										$("#greeting").html('新用户您好，请扫码进行注册<img src="../res/regrcode.png" alt="" >');
+									}
 								}
-								else {//未知用户
-									$("#greeting").html('新用户您好，请扫码进行注册<img src="../res/regrcode.png" alt="" >');
+
+								else {//其他错误 => 10s后再启动人脸识别登录
+									//301 = 没有检测到人脸
+									$("#greeting").html('请扫码注册<img src="../res/regrcode.png" alt="" >');
+
+									setTimeout(() => {
+										scanning();
+									}, 10 * 1000);
 								}
-							}
-
-							else {//其他错误 => 10s后再启动人脸识别登录
-								//301 = 没有检测到人脸
-								$("#greeting").html('请扫码注册<img src="../res/regrcode.png" alt="" >');
-
-								setTimeout(() => {	
-									scanning();
-								}, 10 * 1000);
-							}
-							//还原login=false
-							$.post("http://localhost:5000/message", { login: false }, res => {
-								//...nothing
+								//还原login=false
+								$.post("http://localhost:5000/message", { login: false }, res => {
+									//...nothing
+								});
 							});
-						});
+						}, 2 * 1000);
+
 					}
 				});
 			}
@@ -214,7 +217,7 @@ function getHeartrate() {
 	$.get("http://localhost:5000/heartrate", res => {
 		if (res.status == 100) {
 			$("#heartrate").css('opacity', '0');
-			$("#heartrate").text(res.out + " bpm").animate({'opacity' :'1'});
+			$("#heartrate").text(res.out + " bpm").animate({ 'opacity': '1' });
 		} else if (res.status == 206) {
 			//error => reset
 			resetBand();
