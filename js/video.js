@@ -181,7 +181,7 @@ function loadSportVideo() {
     $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
             video1.empty();
-            video1.append("<source src='../res/video/" + data.out[1] + "' type=video/mp4>");
+            video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
             //video.play();
             console.log("sport is playing!");
             $('#currentBar').css({
