@@ -151,7 +151,7 @@ function scanning() {
 
 								else {//其他错误 => 10s后再启动人脸识别登录
 									//301 = 没有检测到人脸
-									$("#greeting").html('请扫码注册<img src="../res/regrcode.png" alt="" >');
+									$("#greeting").html('新用户您好，请扫码进行注册<img src="../res/regrcode.png" alt="" >');
 
 									setTimeout(() => {
 										scanning();
