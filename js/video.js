@@ -213,7 +213,7 @@ function getHeartrate(limit) {
 function checkLevel(){
     if (level.val() != 0) {
         level.empty();
-        level.css('background-image', 'url(../res/' + level.val() + '-star-w.png)');
+        level.css('background-image', 'url(../res/' + level.val() + '-star.png)');
     //level>1,正式运动
         if (video.pause) {
             level.css('background-image', 'url(../res/' + level.val() + '-star-w.png)');
