@@ -136,9 +136,9 @@ function loadWarmUpVideo() {
             level.val(data.out[2]);
             maxDuration = data.out[4];
             isSafe(level.val());
-            console.log(level.val());
-            console.log(maxDuration);
-video.addEventListener('ended',onWarmUpEnded);
+            // console.log(level.val());
+            // console.log(maxDuration);
+video1.addEventListener('ended',onWarmUpEnded());
             //video1.bind("ended", onWarmUpEnded);//绑定事件
 
         }
@@ -147,13 +147,14 @@ video.addEventListener('ended',onWarmUpEnded);
 function onWarmUpEnded() {
     //热身视频播放结束事件的处理函数
     console.log("warm up is done!");
-video1.empty();
+    video1.empty();
     //总时长变为00：00
-    sign.text("休息一下，准备接下来的运动！")
+    sign.html("休息一下，准备接下来的运动！").show();
     $('#timePass').text('00:00');
     $('#currentBar').css({
         'width': "0px",
     });
+    console.log(video1);
     //载入运动视频
     loadSportVideo();
 
@@ -166,19 +167,22 @@ function loadSportVideo() {
     $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
             console.log(data.out[2],data.out[3]);
-            sign.text("").hide();
+            level.val(data.out[2]);
+            checkLevel();
            //运动等级10s后消失，提示本次运动强度
+
             sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
-            setTimeout(function(){sign.text("").hide()},10*1000);
-            
+            setTimeout(function(){sign.empty();},10*1000);
+
             console.log(sign.text());
             //载入视频
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
             video.play();
             console.log("sport is playing!");
-            level.val(data.out[2]);
+            
             maxDuration = data.out[4];
-            checkLevel();
+    
+            console.log(level);
             //10后显示sign
             setTimeout(isSafe(),10*1000);
             video1.bind("ended", $.onSportEnded);
@@ -208,8 +212,8 @@ function getHeartrate(limit) {
 
 function checkLevel(){
     if (level.val() != 0) {
-        level.text("").hide();
-    
+        level.empty();
+        level.css('background-image', '../res/' + level.val() + '-start.png');
     //level>1,正式运动
         if (video.pause) {
             level.css('background-image', '../res/' + level.val() + '-start-w.png');
