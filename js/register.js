@@ -92,40 +92,42 @@ function register(name, gender, year, height) {
                         "register": true
                     }
                     , data => {
-                        if (data.status == 100) {//更新register=true成功后再执行注册
-                            $.post("http://192.168.2.244:5000/register",
-                                {
-                                    name: name,
-                                    gender: gender,
-                                    year: year,
-                                    height: height
-                                }, data => {
-                                    //请求成功 
-                                    if (data.status == 100) {
+                        if (data.status == 100) {//更新register=true成功后 隔3s再执行注册 ：等摄像头关闭
+                            setTimeout(() => {
+                                $.post("http://192.168.2.244:5000/register",
+                                    {
+                                        name: name,
+                                        gender: gender,
+                                        year: year,
+                                        height: height
+                                    }, data => {
+                                        //请求成功 
+                                        if (data.status == 100) {
 
-                                        $('#alertMsg').text("注册成功！").show();
-                                        $('#registerBtn').css({
-                                            'background-color': 'transparent',
-                                            'color': '#ffffff',
-                                            'border': '1px #E9E9E9 solid'
+                                            $('#alertMsg').text("注册成功！").show();
+                                            $('#registerBtn').css({
+                                                'background-color': 'transparent',
+                                                'color': '#ffffff',
+                                                'border': '1px #E9E9E9 solid'
+                                            });
+                                            $('#registerBtn').text('注册');
+                                        }
+                                        //请求失败
+                                        else {
+                                            $('#alertMsg').text("注册失败!请重试!").show();
+                                            $('#registerBtn').css({
+                                                'background-color': 'transparent',
+                                                'color': '#ffffff',
+                                                'border': '1px #E9E9E9 solid'
+                                            });
+                                            $('#registerBtn').text('注册');
+                                        }
+                                        //还原register=false
+                                        $.post("http://192.168.2.244:5000/message", { register: false }, res => {
+                                            //nothing...
                                         });
-                                        $('#registerBtn').text('注册');
-                                    }
-                                    //请求失败
-                                    else {
-                                        $('#alertMsg').text("注册失败!请重试!").show();
-                                        $('#registerBtn').css({
-                                            'background-color': 'transparent',
-                                            'color': '#ffffff',
-                                            'border': '1px #E9E9E9 solid'
-                                        });
-                                        $('#registerBtn').text('注册');
-                                    }
-                                    //还原register=false
-                                    $.post("http://192.168.2.244:5000/message", { register: false }, res => {
-                                        //nothing...
                                     });
-                                });
+                            }, 3 * 1000);
                         }
                     });
             }
