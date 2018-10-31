@@ -1,8 +1,8 @@
 /**
  *
  * @authors Wang Yuanyuan & Wang Ping
- * @date    2018-10-29
- * @version 1.5
+ * @date    2018-10-31
+ * @version 1.6
  *
  **/
 var video;
@@ -12,14 +12,16 @@ var maxDuration;//当前视频总时长
 var level;
 var MH1 = 999;   //运动最大心率
 var MH2 = 999;   //热身最大心率
-var ID;
 var H1_ID; //id for 正式运动时获取心率的定时器
 var H2_ID;//id for 热身时获取心率的定时器
+var sign;
 
 $(document).ready(function () {
     video1 = $('#videoContent');
     video = document.getElementById('videoContent');
     level = $('#level');
+    sign=$('#sign');
+
     //获取热身时最大安全心率
     $.get('http://localhost:5000/data/MH2', data => {
         if (data.status == 100) {
@@ -33,43 +35,11 @@ $(document).ready(function () {
             MH1 = data.out;
         }
     });
-
+    
+   
     //载入热身视频
     loadWarmUpVideo();
-
-    //定时获取心率，并判断是否安全
-    if (level.val() == 0) {
-        getHeartrate(MH2);
-        //载入心率 3s刷新一次
-        H2_ID = setInterval(function () {
-            getHeartrate(MH2);
-        }, 3 * 1000);
-    }
-    else {
-        //清除热身时候的定时器
-        clearInterval(H2_ID);
-        getHeartrate(MH1);
-        //载入心率 3s刷新一次
-        H1_ID = setInterval(function () {
-            getHeartrate(MH1);
-        }, 3 * 1000);
-    }
-
-    //判断视频等级 
-    //level=0,热身
-    if (level.val() != 0) {
-        level.text("").hide();
-    }
-    //level>1,正式运动
-    else {
-        if (video.pause) {
-            level.css('background-image', '../res/' + level.val() + '-start-w.png');
-        }
-        else {
-            level.css('background-image', '../res/' + level.val() + '-start.png');
-        }
-    }
-
+    
     //计时
     video1.on('timeupdate', function () {
         var s = parseInt(video.currentTime);   //秒
@@ -103,11 +73,7 @@ $(document).ready(function () {
         );
         if (video.paused) {
             $('#currentBar').css(
-                {
-                    'background-color': "rgb(" + 255 + "," + 255 + "," + 255 + ")"
-                }
-            )
-        }
+                    'background-color',"rgb(" + 255 + "," + 255 + "," + 255 + ")")}
         else {
             $('#currentBar').css('background-color', "rgb(" + 255 + "," + 177 + "," + 39 + ")");
         }
@@ -160,6 +126,11 @@ $(document).ready(function () {
 
 })
 
+
+
+
+
+//函数部分
 //载入热身视频
 function loadWarmUpVideo() {
     $.get("http://localhost:5000/sport/warmup", data => {
@@ -167,6 +138,7 @@ function loadWarmUpVideo() {
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
             level.val(data.out[2]);
             maxDuration = data.out[4];
+            isSafe(level.val());
             console.log(level.val());
             console.log(maxDuration);
 video.addEventListener('ended',onWarmUpEnded);
@@ -179,7 +151,11 @@ function onWarmUpEnded() {
     //热身视频播放结束事件的处理函数
     console.log("warm up is done!");
 video1.empty();
-console.log(video);
+    //总时长变为00：00
+    $('#timePass').text('00:00');
+    $('#currentBar').css({
+        'width': "0px",
+    });
     //载入运动视频
     loadSportVideo();
 
@@ -188,26 +164,20 @@ console.log(video);
 
 }
 function loadSportVideo() {
-    //提示本次运动强度
-
     //载入运动视频
     $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
-          $('#timePass').text('00:00');
-            $('#sign').text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
-            setTimeout(function () {
-                $('#sign').text("").hide();
-            }, 10 * 1000);
+           //运动等级10s后消失，提示本次运动强度
+            sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+            //载入视频
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
             video.play();
             console.log("sport is playing!");
-            $('#currentBar').css({
-                'width': "0px",
-            });
-
             level.val(data.out[2]);
             maxDuration = data.out[4];
-
+            checkLevel();
+            //10后显示sign
+            setTimeout(isSafe(),10*1000);
             video1.bind("ended", $.onSportEnded);
         }
     });
@@ -220,23 +190,53 @@ function getHeartrate(limit) {
         if (data.status == 100) {
             $('#heartCount').text(data.out);
             if (data.out >= limit) {                     //判断心率 提示信息
-                $('#sign').text("当前心率已超过安全范围，适当放慢运动节奏！").show();
-                $('#sign').css(
-                    {
-                        'color': 'red',
-                        // 'font-size' :''
-                    }
-                );
+                sign.text("当前心率已超过安全范围，适当放慢运动节奏！").show();
+                sign.css('color','red');
             }
             else {
-                $('#sign').css(
-                    {
-                        'color': 'white',
-                        // 'font-size' :''
-                    }
-                );
-                $('#sign').text("再坚持一下，燃烧你的卡路里，冲鸭！").show();
+                sign.css('color','white');
+                sign.text("再坚持一下，燃烧你的卡路里，冲鸭！").show();
             }
         }
     });
+}
+
+//判断视频等级 
+//level=0,热身
+function checkLevel(){
+    if (level.val() != 0) {
+        level.text("").hide();
+    }
+    //level>1,正式运动
+    else {
+        if (video.pause) {
+            level.css('background-image', '../res/' + level.val() + '-start-w.png');
+        }
+        else {
+            level.css('background-image', '../res/' + level.val() + '-start.png');
+        }
+    }
+}
+
+//判断心率
+function isSafe(arg){
+    //定时获取心率，并判断是否安全
+    if (arg == 0) {
+        getHeartrate(MH2);
+        //载入心率 3s刷新一次
+        H2_ID = setInterval(function () {
+            getHeartrate(MH2);
+        }, 3 * 1000);
+    }
+    else {
+        //清除热身时候的定时器
+        clearInterval(H2_ID);
+        getHeartrate(MH1);
+        //载入心率 3s刷新一次
+        H1_ID = setInterval(function () {
+            getHeartrate(MH1);
+        }, 3 * 1000);
+    }
+
+
 }
