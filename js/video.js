@@ -138,8 +138,8 @@ function loadWarmUpVideo() {
             isSafe(level.val());
             // console.log(level.val());
             // console.log(maxDuration);
-video1.addEventListener('ended',onWarmUpEnded());
-            //video1.bind("ended", onWarmUpEnded);//绑定事件
+//video1.addEventListener('ended',onWarmUpEnded());
+            video1.bind("ended", onWarmUpEnded());//绑定事件
 
         }
     });
@@ -159,7 +159,7 @@ function onWarmUpEnded() {
     loadSportVideo();
 
     // //解除绑定当前处理事件
-    // video1.unbind();
+    video1.unbind();
 
 }
 function loadSportVideo() {
@@ -213,13 +213,13 @@ function getHeartrate(limit) {
 function checkLevel(){
     if (level.val() != 0) {
         level.empty();
-        level.css('background-image', '../res/' + level.val() + '-start.png');
+        level.css('background-image', 'url(../res/' + level.val() + '-star-w.png)');
     //level>1,正式运动
         if (video.pause) {
-            level.css('background-image', '../res/' + level.val() + '-start-w.png');
+            level.css('background-image', 'url(../res/' + level.val() + '-star-w.png)');
         }
         else {
-            level.css('background-image', '../res/' + level.val() + '-start.png');
+            level.css('background-image', 'url(../res/' + level.val() + '-star.png)');
     
     }
     }
