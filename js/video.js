@@ -166,8 +166,11 @@ function loadSportVideo() {
     $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
             console.log(data.out[2],data.out[3]);
+            sign.text("").hide();
            //运动等级10s后消失，提示本次运动强度
             sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+            setTimeout(function(){sign.text("").hide()},10*1000);
+            
             console.log(sign.text());
             //载入视频
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
@@ -202,19 +205,19 @@ function getHeartrate(limit) {
 }
 
 //判断视频等级 
-//level=0,热身
+
 function checkLevel(){
     if (level.val() != 0) {
         level.text("").hide();
-    }
+    
     //level>1,正式运动
-    else {
         if (video.pause) {
             level.css('background-image', '../res/' + level.val() + '-start-w.png');
         }
         else {
             level.css('background-image', '../res/' + level.val() + '-start.png');
-        }
+    
+    }
     }
 }
 
