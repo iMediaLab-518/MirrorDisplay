@@ -40,46 +40,7 @@ $(document).ready(function () {
     //载入热身视频
     loadWarmUpVideo();
     
-    //计时
-    video1.on('timeupdate', function () {
-        var s = parseInt(video.currentTime);   //秒
-        var m = 0;                         //分
-        if (s >= 60) {
-            m = parseInt(s / 60);
-            s = parseInt(s % 60);
-        }
-        if (s == 60) {
-            console.log(1);
-        }
-        s = s < 10 ? "0" + s : s;
-        m = m < 10 ? "0" + m : m;
-
-        $('#timePass').text(m + ":" + s);
-        $('#sportTime').text(m + ":" + s);
-        //console.log(video.currentTime)
-    });
-    //进度条
-    video1.on('timeupdate', function () {
-
-        maxDuration = video.duration;
-        var nowTime = video.currentTime;
-        //console.log(nowTime);
-        //console.log(maxDuration);
-        var current = ($('#timeBar').width() / maxDuration) * nowTime;
-
-        $('#currentBar').css({
-            'width': current + "px",
-        }
-        );
-        if (video.paused) {
-            $('#currentBar').css(
-                    'background-color',"rgb(" + 255 + "," + 255 + "," + 255 + ")")}
-        else {
-            $('#currentBar').css('background-color', "rgb(" + 255 + "," + 177 + "," + 39 + ")");
-        }
-        //console.log(current);
-    });
-
+    
     //开始/暂停控制按钮
     $('#playBtn').on('click', function () {
         //开始
@@ -139,6 +100,7 @@ function loadWarmUpVideo() {
             level.val(data.out[2]);
             maxDuration = data.out[4];
             isSafe(level.val());
+            ontimeupdate();
             console.log(level.val());
             console.log(maxDuration);
 video.addEventListener('ended',onWarmUpEnded);
@@ -175,6 +137,7 @@ function loadSportVideo() {
             console.log("sport is playing!");
             level.val(data.out[2]);
             maxDuration = data.out[4];
+            ontimeupdate();
             checkLevel();
             //10后显示sign
             setTimeout(isSafe(),10*1000);
@@ -240,3 +203,42 @@ function isSafe(arg){
 
 
 }
+//计时
+video1.on('timeupdate', function () {
+    var s = parseInt(video.currentTime);   //秒
+    var m = 0;                         //分
+    if (s >= 60) {
+        m = parseInt(s / 60);
+        s = parseInt(s % 60);
+    }
+    if (s == 60) {
+        console.log(1);
+    }
+    s = s < 10 ? "0" + s : s;
+    m = m < 10 ? "0" + m : m;
+
+    $('#timePass').text(m + ":" + s);
+    $('#sportTime').text(m + ":" + s);
+    //console.log(video.currentTime)
+});
+//进度条
+video1.on('timeupdate', function () {
+
+    maxDuration = video.duration;
+    var nowTime = video.currentTime;
+    //console.log(nowTime);
+    //console.log(maxDuration);
+    var current = ($('#timeBar').width() / maxDuration) * nowTime;
+
+    $('#currentBar').css({
+        'width': current + "px",
+    }
+    );
+    if (video.paused) {
+        $('#currentBar').css(
+                'background-color',"rgb(" + 255 + "," + 255 + "," + 255 + ")")}
+    else {
+        $('#currentBar').css('background-color', "rgb(" + 255 + "," + 177 + "," + 39 + ")");
+    }
+    //console.log(current);
+});
