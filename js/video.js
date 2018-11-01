@@ -148,7 +148,7 @@ function loadWarmUpVideo() {
             // console.log(level.val());
             // console.log(maxDuration);
 //video1.addEventListener('ended',onWarmUpEnded());
-            video1.bind("ended", onWarmUpEnded());//绑定事件
+           // video1.bind("ended", onWarmUpEnded());//绑定事件
 
 
         }
@@ -187,8 +187,7 @@ function loadSportVideo() {
 
             console.log(sign.text());
             //载入视频
-            video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
-            video.play();
+            video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>")
             console.log("sport is playing!");
             checkLevel();
             maxDuration = data.out[4];
