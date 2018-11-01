@@ -1,26 +1,25 @@
 /**
  *
  * @authors Wang Yuanyuan & Wang Ping
- * @date    2018-10-31
- * @version 1.6
+ * @date    2018-11-01
+ * @version 1.7
  *
  **/
 var video;
 var video1;//$对象
 var maxDuration;//当前视频总时长
-//var level=null;
 var level;
 var MH1 = 999;   //运动最大心率
 var MH2 = 999;   //热身最大心率
 var H1_ID; //id for 正式运动时获取心率的定时器
 var H2_ID;//id for 热身时获取心率的定时器
 var sign;
-
 $(document).ready(function () {
     video1 = $('#videoContent');
     video = document.getElementById('videoContent');
     level = $('#level');
     sign = $('#sign');
+
 
     //获取热身时最大安全心率
     $.get('http://localhost:5000/data/MH2', data => {
@@ -150,7 +149,7 @@ sign.empty();
                // console.log(video1);
                // console.log(data.out[2], data.out[3]);
                 level.val(data.out[2]);
-
+                clearInterval(H2_ID);
                 //运动等级10s后消失，提示本次运动强度
                 sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
                 // setTimeout(function () {
@@ -160,10 +159,12 @@ sign.empty();
                 console.log(sign.text());
                 //载入视频
                 video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
-video.load();
-video.play();
-                console.log(video.src);
-                console.log(data.out[1]);
+
+                //第二个视频的加载和播放
+                video.load();
+                video.play();
+               // console.log(video.src);
+              //  console.log(data.out[1]);
 
                 checkLevel();
                 maxDuration = data.out[4];
@@ -222,7 +223,7 @@ video.play();
                 getHeartrate(MH2);
             }, 3 * 1000);
         }
-        else {
+        else{
             //清除热身时候的定时器
             clearInterval(H2_ID);
             getHeartrate(MH1);
