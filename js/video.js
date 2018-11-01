@@ -102,6 +102,7 @@ $(document).ready(function () {
         $.get("http://localhost:5000/sport/warmup", data => {
             if (data.status == 100) {
                 video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
+
                 console.log('warm_up is playing!');
                 level.val(data.out[2]);
                 maxDuration = data.out[4];
@@ -109,10 +110,10 @@ $(document).ready(function () {
                 isSafe(level.val());//判断心率是否正常
 
                 //时间、进度条
-                video.ontimeupdate=myTimeUpdate(video.currentTime, maxDuration);
+                video.ontimeupdate=function(){myTimeUpdate(maxDuration)};
                 //video1.on('timeupdate', myTimeUpdate());
 
-//video1.addEventListener('ended',onWarmUpEnded());
+//video.addEventListener('ended',function(){onWarmUpEnded()});
               //  video1.bind("ended", onWarmUpEnded());//绑定事件
 
 
@@ -136,7 +137,7 @@ $(document).ready(function () {
         loadSportVideo();
 
         // //解除绑定当前处理事件
-        video1.unbind();
+     //   video1.unbind();
 
     }
 
@@ -144,6 +145,7 @@ $(document).ready(function () {
         //载入运动视频
         $.get("http://localhost:5000/sport/start", data => {
             if (data.status == 100) {
+sign.empty();
 
                // console.log(video1);
                // console.log(data.out[2], data.out[3]);
@@ -158,12 +160,14 @@ $(document).ready(function () {
                 console.log(sign.text());
                 //载入视频
                 video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
+video.load();
+video.play();
                 console.log(video.src);
                 console.log(data.out[1]);
 
                 checkLevel();
                 maxDuration = data.out[4];
-                video.ontimeupdate=myTimeUpdate(video.currentTime, maxDuration);
+                video.ontimeupdate=function(){myTimeUpdate(maxDuration)};
                // video1.on('timeupdate',myTimeUpdate(video.currentTime,maxDuration));
                 console.log(level.val());
                 //10后显示sign
@@ -232,7 +236,8 @@ $(document).ready(function () {
     }
 
 //时间进度条
-    function myTimeUpdate(nowTime, maxDuration) {
+    function myTimeUpdate(maxDuration) {
+var nowTime=video.currentTime;
         var s = parseInt(nowTime);   //秒
         var m = 0;                         //分
         if (s >= 60) {
@@ -264,11 +269,14 @@ $(document).ready(function () {
         else {
             $('#currentBar').css('background-color', "rgb(" + 255 + "," + 177 + "," + 39 + ")");
         }
-        if (level.val() == 0) {
-            if (nowTime >= maxDuration) {
+       if (level.val() == 0) {
+           if (nowTime >= maxDuration) {
                 onWarmUpEnded();
             }
         }
+console.log("I am playing");
+//console.log(video.currentTime);
+//console.log(maxDuration);
 
     }
 
