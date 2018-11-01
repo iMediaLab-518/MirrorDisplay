@@ -15,6 +15,7 @@ var MH2 = 999;   //热身最大心率
 var H1_ID; //id for 正式运动时获取心率的定时器
 var H2_ID;//id for 热身时获取心率的定时器
 var sign;
+var nowTime;
 
 $(document).ready(function () {
     video1 = $('#videoContent');
@@ -59,7 +60,7 @@ $(document).ready(function () {
         //console.log(video.currentTime)
         //进度条
         maxDuration = video.duration;
-        let nowTime = video.currentTime;
+        nowTime = video.currentTime;
         //console.log(nowTime);
         //console.log(maxDuration);
         let current = ($('#timeBar').width() / maxDuration) * nowTime;
@@ -74,6 +75,9 @@ $(document).ready(function () {
         else {
             $('#currentBar').css('background-color', "rgb(" + 255 + "," + 177 + "," + 39 + ")");
         }
+        if(nowTime>=maxDuration){
+            onWarmUpEnded();
+        }
     });
 
 
@@ -81,6 +85,7 @@ $(document).ready(function () {
     $('#playBtn').on('click', function () {
         //开始
         if (video.paused) {
+            level.css('background-image', 'url(../res/' + level.val() + '-star.png)');
             video1.css('display', 'block');
             $('#videoPlay').css('background-color', '#ffffff');
             level.css('color', "rgb(" + 255 + "," + 177 + "," + 39 + ")");
@@ -93,6 +98,7 @@ $(document).ready(function () {
         }
         //暂停
         else {
+            level.css('background-image', 'url(../res/' + level.val() + '-star-w.png)');
             level.css('color', "rgb(" + 255 + "," + 255 + "," + 255 + ")");
             video1.css('display', 'none');
             $('#videoPlay').css('background-color', '#999999');
@@ -151,6 +157,7 @@ function loadWarmUpVideo() {
 function onWarmUpEnded() {
     //热身视频播放结束事件的处理函数
     console.log("warm up is done!");
+    sign.empty();
     //总时长变为00：00
     sign.text("休息一下，准备接下来的运动！").show();
     $('#timePass').text('00:00');
