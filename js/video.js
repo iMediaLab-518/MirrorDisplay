@@ -147,9 +147,8 @@ function loadWarmUpVideo() {
 function onWarmUpEnded() {
     //热身视频播放结束事件的处理函数
     console.log("warm up is done!");
-    video1.empty();
     //总时长变为00：00
-    sign.html("休息一下，准备接下来的运动！").show();
+    sign.text("休息一下，准备接下来的运动！").show();
     $('#timePass').text('00:00');
     $('#currentBar').css({
         'width': "0px",
@@ -166,11 +165,12 @@ function loadSportVideo() {
     //载入运动视频
     $.get("http://localhost:5000/sport/start", data => {
         if (data.status == 100) {
+            video1.empty();
+            console.log(video1);
             console.log(data.out[2],data.out[3]);
             level.val(data.out[2]);
             checkLevel();
            //运动等级10s后消失，提示本次运动强度
-
             sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
             setTimeout(function(){sign.empty();},10*1000);
 
@@ -182,7 +182,7 @@ function loadSportVideo() {
             
             maxDuration = data.out[4];
     
-            console.log(level);
+            console.log(level.val());
             //10后显示sign
             setTimeout(isSafe(),10*1000);
             video1.bind("ended", $.onSportEnded);
@@ -215,13 +215,12 @@ function checkLevel(){
         level.empty();
         level.css('background-image', 'url(../res/' + level.val() + '-star.png)');
     //level>1,正式运动
-        if (video.pause) {
+        if (video.paused) {
             level.css('background-image', 'url(../res/' + level.val() + '-star-w.png)');
         }
         else {
             level.css('background-image', 'url(../res/' + level.val() + '-star.png)');
-    
-    }
+        }
     }
 }
 
