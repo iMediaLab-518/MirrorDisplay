@@ -133,13 +133,17 @@ function loadWarmUpVideo() {
     $.get("http://localhost:5000/sport/warmup", data => {
         if (data.status == 100) {
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
+            video.play();
+            console.log('warm_up is playing!');
             level.val(data.out[2]);
             maxDuration = data.out[4];
-            isSafe(level.val());
+            console.log("warm_up val() ",level.val());
+            isSafe(level.val());//判断心率是否正常
             // console.log(level.val());
             // console.log(maxDuration);
 //video1.addEventListener('ended',onWarmUpEnded());
             video1.bind("ended", onWarmUpEnded());//绑定事件
+
 
         }
     });
@@ -169,7 +173,7 @@ function loadSportVideo() {
             console.log(video1);
             console.log(data.out[2],data.out[3]);
             level.val(data.out[2]);
-            checkLevel();
+
            //运动等级10s后消失，提示本次运动强度
             sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
             setTimeout(function(){sign.empty();},10*1000);
@@ -179,12 +183,13 @@ function loadSportVideo() {
             video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
             video.play();
             console.log("sport is playing!");
-            
+            checkLevel();
             maxDuration = data.out[4];
     
             console.log(level.val());
             //10后显示sign
-            setTimeout(isSafe(),10*1000);
+            setTimeout(isSafe(level.val()),10*1000);
+
             video1.bind("ended", $.onSportEnded);
         }
     });
