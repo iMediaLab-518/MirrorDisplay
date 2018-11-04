@@ -149,10 +149,7 @@ $(document).ready(function () {
                // console.log(video1);
                // console.log(data.out[2], data.out[3]);
                 level.val(data.out[2]);
-                clearInterval(H2_ID);
-                sign.empty();
-                //运动等级10s后消失，提示本次运动强度
-                sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+
                 // setTimeout(function () {
                 //     sign.empty();
                 // }, 10 * 1000);
@@ -273,6 +270,16 @@ var nowTime=video.currentTime;
         }
        if (level.val() == 0) {
            if (nowTime >= maxDuration) {
+               clearInterval(H2_ID);
+
+               //运动等级10s后消失，提示本次运动强度
+               $.get("http://localhost:5000/sport/start", data =>{
+                   if(data.status==100){
+                       sign.empty();
+                       sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+                   }
+               })
+
                 onWarmUpEnded();
             }
 
@@ -282,7 +289,8 @@ var nowTime=video.currentTime;
                video1.empty();
                video1.css('display', 'none');
                $('#videoPlay').css('background-color', '#999999');
-               document.writeln("<script type=\"text/javascript\" src=\"../js/modal.js\" ></script>");
+             //  document.writeln("<script type=\"text/javascript\" src=\"../js/modal.js\" ></script>");
+             //动态加载部分
            }
        }
 console.log("I am playing");
