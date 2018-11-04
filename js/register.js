@@ -6,7 +6,7 @@
  *
  **/
 
-$(document).ready(function () {
+ $(document).ready(function () {
 
     var startHeight = 150;
     var endHeight = 200;
@@ -20,21 +20,21 @@ $(document).ready(function () {
         if ($("#inputName").val() == "" || $('#inputHeight').val() == '' || $('#yearBirth').val() == ''
             || sexChecked == null) {
             $("#alertMsg").text("信息未填写完整").show();
-            if ($("#inputName").val() == "") {
-                $('#inputName').css('border', '1px red solid');
-            }
-            if (sexChecked == null) {
-                $('.sexLabel').css('color', 'red');
-            }
-            if ($('#inputHeight').val() == '') {
-                $('#inputHeight').css('border', '1px red solid');
-            }
-            if ($('#yearBirth').val() == '') {
-                $('#yearBirth').css('border', '1px red solid');
-            }
-
-            return;
+        if ($("#inputName").val() == "") {
+            $('#inputName').css('border', '1px red solid');
         }
+        if (sexChecked == null) {
+            $('.sexLabel').css('color', 'red');
+        }
+        if ($('#inputHeight').val() == '') {
+            $('#inputHeight').css('border', '1px red solid');
+        }
+        if ($('#yearBirth').val() == '') {
+            $('#yearBirth').css('border', '1px red solid');
+        }
+
+        return;
+    }
         //若全部填写
 
         else {
@@ -82,25 +82,21 @@ $(document).ready(function () {
     });
 })
 
-function register(name, gender, year, height) {
-    $.get('http://192.168.2.244:5000/message', data => {
-        if (data.status == 100) {
-            if (data.out['login'] !== true) {       //若用户没有在登录，不冲突，执行注册逻辑
+ function register(name, gender, year, height) {
                 //更新消息字典
                 $.post('http://192.168.2.244:5000/message',
-                    {
-                        "register": true
-                    }
-                    , data => {
+                {
+                    "register": true
+                }
+                , data => {
                         if (data.status == 100) {//更新register=true成功后 隔3s再执行注册 ：等摄像头关闭
-                            setTimeout(() => {
-                                $.post("http://192.168.2.244:5000/register",
-                                    {
-                                        name: name,
-                                        gender: gender,
-                                        year: year,
-                                        height: height
-                                    }, data => {
+                            $.post("http://192.168.2.244:5000/register",
+                            {
+                                name: name,
+                                gender: gender,
+                                year: year,
+                                height: height
+                            }, data => {
                                         //请求成功 
                                         if (data.status == 100) {
 
@@ -127,15 +123,7 @@ function register(name, gender, year, height) {
                                             //nothing...
                                         });
                                     });
-                            }, 3 * 1000);
                         }
                     });
+
             }
-            else {//正在登录，冲突=> 1s后再注册 
-                setTimeout(() => {
-                    register(name, gender, year, height);
-                }, 1000);
-            }
-        }
-    });
-}
