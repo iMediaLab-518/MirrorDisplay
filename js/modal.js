@@ -167,8 +167,8 @@
 		$('#myModal').modal('show');
 	}
 
-	return {	
-		onSportEnded:onSportEnded(),
-	};
+	// return {
+	// 	onSportEnded:onSportEnded(),
+	// };
 
 })(jQuery)
