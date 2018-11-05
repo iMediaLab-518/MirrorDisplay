@@ -144,6 +144,7 @@ $(document).ready(function () {
         //载入运动视频
         $.get("http://localhost:5000/sport/start", data => {
             if (data.status == 100) {
+                clearInterval(H1_ID);
 
 
                // console.log(video1);
@@ -286,6 +287,7 @@ var nowTime=video.currentTime;
         }
         else if(level.val()!=0) {
            if (nowTime >= maxDuration) {
+               clearInterval(H1_ID);
                video1.empty();
                video1.css('display', 'none');
                $('#videoPlay').css('background-color', '#999999');
