@@ -106,7 +106,6 @@ function scanning() {
 		if (res.status == 100) {
 			//正在注册 => 出现注册动效 + 30s后再启动登录
 			if (res.out["register"] === true) {
-
 				//隐藏登录扫描动效
 				$("#scanning").hide();
 				//边框*2 变黑色
@@ -138,9 +137,8 @@ function scanning() {
 				$.post("http://localhost:5000/message", { login: true }, res => {
 					//更新login=true成功后 隔3s 再正式启动人脸识别登录 等待摄像头关闭
 					if (res.status == 100) {
-						setTimeout(() => {
-							$.get("http://localhost:5000/login", res => {
-								if (res.status == 100) {
+						$.get("http://localhost:5000/login", res => {
+							if (res.status == 100) {
 									if (res.out !== "unknown") {//已注册用户
 										login(res.out[0]);
 									}
@@ -149,20 +147,19 @@ function scanning() {
 									}
 								}
 
-								else {//其他错误 => 10s后再启动人脸识别登录
+								else {//其他错误 => 5s后再启动人脸识别登录
 									//301 = 没有检测到人脸
 									$("#greeting").html('新用户您好，请扫码进行注册<img src="../res/regrcode.png" alt="" >');
 
 									setTimeout(() => {
 										scanning();
-									}, 10 * 1000);
+									}, 5 * 1000);
 								}
 								//还原login=false
 								$.post("http://localhost:5000/message", { login: false }, res => {
 									//...nothing
 								});
 							});
-						}, 3 * 1000);
 
 					}
 				});
