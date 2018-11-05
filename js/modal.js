@@ -170,5 +170,5 @@
 	// return {
 	// 	onSportEnded:onSportEnded(),
 	// };
-
+onSportEnded();
 })(jQuery)

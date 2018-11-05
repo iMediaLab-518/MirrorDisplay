@@ -290,6 +290,7 @@ var nowTime=video.currentTime;
                video1.css('display', 'none');
                $('#videoPlay').css('background-color', '#999999');
              //  document.writeln("<script type=\"text/javascript\" src=\"../js/modal.js\" ></script>");
+               loadScript("../js/modal.js");
              //动态加载部分
            }
        }
@@ -297,5 +298,11 @@ console.log("I am playing");
 //console.log(video.currentTime);
 //console.log(maxDuration);
 
+    }
+    function loadScript(url){
+   let script=document.createElement('script');
+    script.type='text/javascript';
+    script.src=url;
+    document.body.appendChild(script);
     }
 
