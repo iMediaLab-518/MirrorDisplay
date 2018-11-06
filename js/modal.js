@@ -1,15 +1,15 @@
 /**
  *
  * @authors He xi & Wang Ping
- * @date    2018-10-29
- * @version 1.2
+ * @date    2018-11-06
+ * @version 1.3
  *
  **/
 
 (function ($) {
 
-	//10秒倒计时
-	var intDiff = parseInt(10);//倒计时总秒数量
+	//30秒倒计时
+	var intDiff = parseInt(30);//倒计时总秒数量
 	timer(intDiff);
 	function timer(intDiff) {
 		window.setInterval(function () {
@@ -107,18 +107,40 @@
 
 	//获取运动时长
 	function getSportsTime() {
-		$.get("http://localhost:5000/sport/start ", data => {
+		var sportsTime = 0;
+		var calorie = 0.0;
+		//获取热身运动的时长
+		$.get("http://localhost:5000/sport/warmup", data => {
 			if (data.status == 100) {
 				//单位换成分钟并取整
-				$("#sports-length-value").text(parseInt(data.out[4]/60));
+				sportsTime += parseInt(data.out[4]/60);
+//				$("#sports-length-value").text();
 			}
 		});
+		//获取热身运动消耗的卡路里
+		calorie += getCalorie();
+		
+		//获取正式运动的时长
+		$.get("http://localhost:5000/sport/start ", data => {
+			if (data.status == 100) {
+				//热身时长+正式运动时长
+				sportsTime += parseInt(data.out[4]/60); 
+				//单位换成分钟并取整
+				$("#sports-length-value").text(sportsTime);
+			}
+		});
+		
+		//获取正式运动消耗的卡路里
+		calorie += getCalorie();
+		//填写卡路里值
+		$("#calorie-value").text(calorie);
 	}
 //	获取卡路里
 		function getCalorie(){
 			$.get("http://localhost:5000/sport/calorie", data => {
 				if (data.status == 100) {
-					$("#calorie-value").text(parseInt(data.out*10)/10);
+//					$("#calorie-value").text(parseInt(data.out*10)/10);
+					return (parseInt(data.out*10)/10);
 				}
 			});	
 		}
@@ -160,7 +182,7 @@
 		//生理参数的获取
 		getHighestHeartRate();
 		getAverageHeartRate();
-		getCalorie();
+//		getCalorie();
 
 		
 		//show
