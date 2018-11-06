@@ -9,7 +9,7 @@
 (function ($) {
 
 	//30秒倒计时
-	var intDiff = parseInt(30);//倒计时总秒数量
+	var intDiff = parseInt(10);//倒计时总秒数量
 	timer(intDiff);
 	function timer(intDiff) {
 		window.setInterval(function () {
@@ -182,7 +182,7 @@
 		//生理参数的获取
 		getHighestHeartRate();
 		getAverageHeartRate();
-//		getCalorie();
+		getCalorie();
 
 		
 		//show
