@@ -133,7 +133,7 @@
 		//填写卡路里值
 
 	}
-		$("#calorie-value").text(calorie);
+	
 	
 //	获取卡路里
 		function getCalorie(){
