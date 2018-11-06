@@ -152,7 +152,7 @@ $(document).ready(function () {
                 $.get("http://localhost:5000/sport/start", data =>{
                     if(data.status==100){
                         sign.empty();
-                        sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+                        sign.text("运动等级：" + data.out[2] + " , " + "运动强度：" + data.out[3]).show();
                         console.log(level.text());
                     }
                 })
