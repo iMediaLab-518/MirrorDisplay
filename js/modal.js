@@ -30,9 +30,9 @@
 		}, 1000);
 	}
 	// 倒计时结束之后自动退出到登陆界面
-	//setTimeout(function () {
-	//	window.location.href = '../page/main.html';
-	//}, 12000);
+	setTimeout(function () {
+		window.location.href = '../page/main.html';
+	}, 30000);
 
 	function fetchContext() { //右下角 日期时间的获取
 		let time = moment().format('HH:mm');
@@ -132,6 +132,7 @@
 		
 		//获取正式运动消耗的卡路里
 		calorie += getCalorie();
+		console.log("showCaloire:",calorie);
 		//填写卡路里值
 		$("#calorie-value").text(calorie);
 	}
@@ -140,6 +141,7 @@
 			$.get("http://localhost:5000/sport/calorie", data => {
 				if (data.status == 100) {
 //					$("#calorie-value").text(parseInt(data.out*10)/10);
+					console.log("getCalorie:",parseInt(data.out*10)/10)
 					return (parseInt(data.out*10)/10);
 				}
 			});	
