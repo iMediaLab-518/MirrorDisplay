@@ -144,12 +144,18 @@ $(document).ready(function () {
         //载入运动视频
         $.get("http://localhost:5000/sport/start", data => {
             if (data.status == 100) {
-                clearInterval(H1_ID);
-
-
-               // console.log(video1);
-               // console.log(data.out[2], data.out[3]);
                 level.val(data.out[2]);
+                setTimeout(isSafe(level.val()), 10 * 1000);
+                // console.log(video1);
+               // console.log(data.out[2], data.out[3]);
+                //运动等级10s后消失，提示本次运动强度
+                $.get("http://localhost:5000/sport/start", data =>{
+                    if(data.status==100){
+                        sign.empty();
+                        sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
+                        console.log(level.text());
+                    }
+                })
 
                 // setTimeout(function () {
                 //     sign.empty();
@@ -170,8 +176,7 @@ $(document).ready(function () {
                 video.ontimeupdate=function(){myTimeUpdate(maxDuration)};
                // video1.on('timeupdate',myTimeUpdate(video.currentTime,maxDuration));
                 console.log(level.val());
-                //10后显示sign
-                setTimeout(isSafe(level.val()), 10 * 1000);
+
 
              //   video1.bind("ended", $.onSportEnded);
             }
@@ -224,7 +229,7 @@ $(document).ready(function () {
         }
         else{
             //清除热身时候的定时器
-            clearInterval(H2_ID);
+           // clearInterval(H2_ID);
             getHeartrate(MH1);
             //载入心率 3s刷新一次
             H1_ID = setInterval(function () {
@@ -253,6 +258,7 @@ var nowTime=video.currentTime;
         $('#timePass').text(m + ":" + s);
         $('#sportTime').text(m + ":" + s);
         //console.log(video.currentTime)
+
         //进度条
         //console.log(nowTime);
         //console.log(maxDuration);
@@ -269,17 +275,11 @@ var nowTime=video.currentTime;
         else {
             $('#currentBar').css('background-color', "rgb(" + 255 + "," + 177 + "," + 39 + ")");
         }
+
+        //结束判断
        if (level.val() == 0) {
            if (nowTime >= maxDuration) {
                clearInterval(H2_ID);
-
-               //运动等级10s后消失，提示本次运动强度
-               $.get("http://localhost:5000/sport/start", data =>{
-                   if(data.status==100){
-                       sign.empty();
-                       sign.text("运动等级:" + data.out[2] + "," + "运动强度:" + data.out[3]).show();
-                   }
-               })
 
                 onWarmUpEnded();
             }
