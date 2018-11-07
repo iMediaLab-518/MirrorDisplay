@@ -120,6 +120,12 @@ $(document).ready(function () {
 
             }
         });
+        $.get("http://localhost:5000/sport/calorie", data => {
+				if (data.status == 100) {
+//					$("#calorie-value").text(parseInt(data.out*10)/10);
+					console.log(parseInt(data.out*10)/10);
+				}
+			});	
     }
 
     function onWarmUpEnded() {
