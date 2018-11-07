@@ -30,9 +30,9 @@
 		}, 1000);
 	}
 	// 倒计时结束之后自动退出到登陆界面
-	setTimeout(function () {
-		window.location.href = '../page/main.html';
-	}, 30000);
+//	setTimeout(function () {
+//		window.location.href = '../page/main.html';
+//	}, 30000);
 
 	function fetchContext() { //右下角 日期时间的获取
 		let time = moment().format('HH:mm');
