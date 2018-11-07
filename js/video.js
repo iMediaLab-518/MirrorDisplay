@@ -14,6 +14,7 @@ var MH2 = 999;   //热身最大心率
 var H1_ID; //id for 正式运动时获取心率的定时器
 var H2_ID;//id for 热身时获取心率的定时器
 var sign;
+var sportsTime=null;
 $(document).ready(function () {
     video1 = $('#videoContent');
     video = document.getElementById('videoContent');
@@ -101,7 +102,7 @@ $(document).ready(function () {
         $.get("http://localhost:5000/sport/warmup", data => {
             if (data.status == 100) {
                 video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
-
+                sportsTime+=data.out[4];
                 console.log('warm_up is playing!');
                 level.val(data.out[2]);
                 maxDuration = data.out[4];
@@ -168,7 +169,9 @@ $(document).ready(function () {
                 //第二个视频的加载和播放
                 video.load();
                 video.play();
-               // console.log(video.src);
+                                sportsTime+=data.out[4];
+
+               console.log(sportsTime);
               //  console.log(data.out[1]);
 
                 checkLevel();
@@ -292,7 +295,11 @@ var nowTime=video.currentTime;
                video1.css('display', 'none');
                $('#videoPlay').css('background-color', '#999999');
              //  document.writeln("<script type=\"text/javascript\" src=\"../js/modal.js\" ></script>");
+				$("#sports-length-value").text(sportsTime);			
+             
                loadScript("../js/modal.js");
+						
+               console.log($("#sports-length-value").text());
              //动态加载部分
            }
        }

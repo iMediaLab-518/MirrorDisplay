@@ -107,7 +107,7 @@
 	//运动时长
 	var sportsTime = 0;
 	//获取热身运动时长：
-//	function getWarmUpTime(){
+//	function getWarmU          pTime(){
 //		$.get("http://localhost:5000/sport/warmup", data => {
 //			if (data.status == 100) {
 //				//单位换成分钟并取整
@@ -131,10 +131,11 @@
 				//热身时长+正式运动时长
 				sportsTime += parseInt(data.out[4]/60); 
 				console.log('sports!',sportsTime);
+				console.log(data.out[1]);
+				$("#sports-length-value").text(sportsTime);			
 			}
 		});
-		console.log('totaltime',sportsTime);
-		$("#sports-length-value").text(sportsTime);
+
 	}
 //	获取卡路里
 		function getCalorie(){
@@ -178,7 +179,7 @@
 		getUserWeight();
 
 		//运动时长
-		getSportsTime();
+//		getSportsTime();
 
 		//生理参数的获取
 		getHighestHeartRate();
