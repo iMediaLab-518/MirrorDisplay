@@ -15,6 +15,7 @@ var H1_ID; //id for 正式运动时获取心率的定时器
 var H2_ID;//id for 热身时获取心率的定时器
 var sign;
 var sportsTime=null;
+var calorie = null;
 $(document).ready(function () {
     video1 = $('#videoContent');
     video = document.getElementById('videoContent');
@@ -124,6 +125,15 @@ $(document).ready(function () {
     function onWarmUpEnded() {
         //热身视频播放结束事件的处理函数
         console.log("warm up is done!");
+        //获取热身视频卡路里
+        $.get("http://localhost:5000/sport/calorie", data => {
+				if (data.status == 100) {
+					calorie += (parseInt(data.out*10)/10
+//					$("#calorie-value").text(parseInt(data.out*10)/10);
+					console.log("warmup",calorie);
+				}
+			});	
+			
         sign.empty();
         video1.empty();
         //总时长变为00：00
@@ -184,6 +194,14 @@ $(document).ready(function () {
              //   video1.bind("ended", $.onSportEnded);
             }
         });
+        //获取运动视频卡路里
+        $.get("http://localhost:5000/sport/calorie", data => {
+				if (data.status == 100) {
+					calorie += (parseInt(data.out*10)/10
+//					$("#calorie-value").text(parseInt(data.out*10)/10);
+					console.log("sport!",calorie);
+				}
+			});	
         //console.log(level.val());
     }
 
@@ -295,8 +313,8 @@ var nowTime=video.currentTime;
                video1.css('display', 'none');
                $('#videoPlay').css('background-color', '#999999');
              //  document.writeln("<script type=\"text/javascript\" src=\"../js/modal.js\" ></script>");
-				$("#sports-length-value").text(sportsTime);			
-             
+				$("#sports-length-value").text(sportsTime/60);			
+             	$("#calorie-value").text(parseInt(data.out*10)/10);
                loadScript("../js/modal.js");
 						
                console.log($("#sports-length-value").text());
