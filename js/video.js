@@ -298,7 +298,7 @@ var nowTime=video.currentTime;
                video1.css('display', 'none');
                $('#videoPlay').css('background-color', '#999999');
              //  document.writeln("<script type=\"text/javascript\" src=\"../js/modal.js\" ></script>");
-				$("#sports-length-value").text(sportsTime/60);			
+				$("#sports-length-value").text(parseInt(sportsTime/60));			
                loadScript("../js/modal.js");
 						
                console.log($("#sports-length-value").text());
