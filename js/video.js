@@ -128,7 +128,7 @@ $(document).ready(function () {
         //获取热身视频卡路里
         $.get("http://localhost:5000/sport/calorie", data => {
 				if (data.status == 100) {
-					calorie += (parseInt(data.out*10)/10
+					calorie += (parseInt(data.out*10)/10);
 //					$("#calorie-value").text(parseInt(data.out*10)/10);
 					console.log("warmup",calorie);
 				}
