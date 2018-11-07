@@ -15,7 +15,7 @@ var H1_ID; //id for 正式运动时获取心率的定时器
 var H2_ID;//id for 热身时获取心率的定时器
 var sign;
 var sportsTime=null;
-var calorie = null;
+var calorie = 0.0;
 $(document).ready(function () {
     video1 = $('#videoContent');
     video = document.getElementById('videoContent');
@@ -124,6 +124,7 @@ $(document).ready(function () {
 				if (data.status == 100) {
 //					$("#calorie-value").text(parseInt(data.out*10)/10);
 					console.log(parseInt(data.out*10)/10);
+					calorie+=parseInt(data.out*10)/10;
 				}
 			});	
     }
@@ -196,6 +197,7 @@ $(document).ready(function () {
 				if (data.status == 100) {
 //					$("#calorie-value").text(parseInt(data.out*10)/10);
 					console.log(parseInt(data.out*10)/10);
+					calorie+=parseInt(data.out*10)/10;
 				}
 			});
         //console.log(level.val());
@@ -309,7 +311,8 @@ var nowTime=video.currentTime;
                video1.css('display', 'none');
                $('#videoPlay').css('background-color', '#999999');
              //  document.writeln("<script type=\"text/javascript\" src=\"../js/modal.js\" ></script>");
-				$("#sports-length-value").text(parseInt(sportsTime/60));			
+				$("#sports-length-value").text(parseInt(sportsTime/60));		
+				$("#calorie-value").text(calorie);
                loadScript("../js/modal.js");
 						
                console.log($("#sports-length-value").text());
