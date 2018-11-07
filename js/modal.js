@@ -112,6 +112,7 @@
 			if (data.status == 100) {
 				//单位换成分钟并取整
 				sportsTime += parseInt(data.out[4]/60);
+			}
 		});
 	}
 	//获取正式运动时长
