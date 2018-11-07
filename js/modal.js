@@ -30,9 +30,9 @@
 		}, 1000);
 	}
 	// 倒计时结束之后自动退出到登陆界面
-	setTimeout(function () {
-		window.location.href = '../page/main.html';
-	}, 30000);
+//	setTimeout(function () {
+//		window.location.href = '../page/main.html';
+//	}, 30000);
 
 	function fetchContext() { //右下角 日期时间的获取
 		let time = moment().format('HH:mm');
@@ -104,22 +104,18 @@
 			}
 		});		
 	}
-	var calorie = 0.0;
-	//获取运动时长
-	function getSportsTime() {
-		var sportsTime = 0;
-		//获取热身运动的时长
+	//运动时长
+	var sportsTime = 0;
+	//获取热身运动时长：
+	function getWarmUpTime(){
 		$.get("http://localhost:5000/sport/warmup", data => {
 			if (data.status == 100) {
 				//单位换成分钟并取整
 				sportsTime += parseInt(data.out[4]/60);
-//				$("#sports-length-value").text();
-			}
 		});
-		//获取热身运动消耗的卡路里
-//		calorie += getCalorie();
-//		console.log("showWarmUpCaloire:",calorie);
-		
+	}
+	//获取正式运动时长
+	function getSportsTime() {
 		//获取正式运动的时长
 		$.get("http://localhost:5000/sport/start ", data => {
 			if (data.status == 100) {
@@ -129,22 +125,21 @@
 				$("#sports-length-value").text(sportsTime);
 			}
 		});
-	
-		//填写卡路里值
 
 	}
 	
-	
+	var calorie = 0.0;
 //	获取卡路里
 		function getCalorie(){
 			$.get("http://localhost:5000/sport/calorie", data => {
 				if (data.status == 100) {
-					$("#calorie-value").text(parseInt(data.out*10)/10);
-//					console.log("getCalorie:",parseInt(data.out*10)/10)
-//					return (parseInt(data.out*10)/10);
+//					$("#calorie-value").text(parseInt(data.out*10)/10);
+					calorie+=parseInt(data.out*10)/10;
+					console.log(calorie);
 				}
 			});	
 		}
+
 	//获取最高心率
 	function getHighestHeartRate() {
 		$.get("http://localhost:5000/data/max_heartrate ", data => {
@@ -178,12 +173,19 @@
 		getUserWeight();
 
 		//运动时长
+		getWarmUpTime();
+		getCalorie();
+		
 		getSportsTime();
-
+		getCalorie();
+		
+		//写卡路里！
+		$("#calorie-value").text(calorie);
+		
 		//生理参数的获取
 		getHighestHeartRate();
 		getAverageHeartRate();
-		getCalorie();
+		
 
 		
 		//show
