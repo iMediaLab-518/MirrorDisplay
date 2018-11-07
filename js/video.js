@@ -126,13 +126,13 @@ $(document).ready(function () {
         //热身视频播放结束事件的处理函数
         console.log("warm up is done!");
         //获取热身视频卡路里
-        $.get("http://localhost:5000/sport/calorie", data => {
-				if (data.status == 100) {
-					calorie += (parseInt(data.out*10)/10);
-//					$("#calorie-value").text(parseInt(data.out*10)/10);
-					console.log("warmup",calorie);
-				}
-			});	
+//      $.get("http://localhost:5000/sport/calorie", data => {
+//				if (data.status == 100) {
+//					calorie += (parseInt(data.out*10)/10);
+////					$("#calorie-value").text(parseInt(data.out*10)/10);
+////					console.log("warmup",calorie);
+//				}
+//			});	
 			
         sign.empty();
         video1.empty();
