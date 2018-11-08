@@ -1,8 +1,8 @@
 /**
  *
  * @authors He xi & Wang Ping
- * @date    2018-11-06
- * @version 1.3
+ * @date    2018-11-08
+ * @version 1.4
  *
  **/
 
@@ -104,48 +104,6 @@
 			}
 		});		
 	}
-	//运动时长
-	var sportsTime = 0;
-	//获取热身运动时长：
-//	function getWarmU          pTime(){
-//		$.get("http://localhost:5000/sport/warmup", data => {
-//			if (data.status == 100) {
-//				//单位换成分钟并取整
-//				sportsTime += parseInt(data.out[4]/60);
-//			}
-//		});
-//	}
-	//获取正式运动时长
-	function getSportsTime() {
-		//获取热身运动时长
-		$.get("http://localhost:5000/sport/warmup", data => {
-			if (data.status == 100) {
-				//单位换成分钟并取整
-				sportsTime += parseInt(data.out[4]/60);
-				console.log('warmup!',sportsTime);
-			}
-		});
-		//获取正式运动的时长
-		$.get("http://localhost:5000/sport/start ", data => {
-			if (data.status == 100) {
-				//热身时长+正式运动时长
-				sportsTime += parseInt(data.out[4]/60); 
-				console.log('sports!',sportsTime);
-				console.log(data.out[1]);
-				$("#sports-length-value").text(sportsTime);			
-			}
-		});
-
-	}
-//	获取卡路里
-		function getCalorie(){
-			$.get("http://localhost:5000/sport/calorie", data => {
-				if (data.status == 100) {
-					$("#calorie-value").text(parseInt(data.out*10)/10);
-					console.log(parseInt(data.out*10)/10);
-				}
-			});	
-		}
 	//获取最高心率
 	function getHighestHeartRate() {
 		$.get("http://localhost:5000/data/max_heartrate ", data => {

@@ -1,8 +1,8 @@
 /**
  *
  * @authors Wang Yuanyuan & Wang Ping
- * @date    2018-11-01
- * @version 1.7
+ * @date    2018-11-08
+ * @version 1.8
  *
  **/
 var video;
@@ -103,6 +103,7 @@ $(document).ready(function () {
         $.get("http://localhost:5000/sport/warmup", data => {
             if (data.status == 100) {
                 video1.append("<source src='../res/video/" + data.out[1] + "' type='video/mp4'>");
+                //获取热身运动时长
                 sportsTime+=data.out[4];
                 console.log('warm_up is playing!');
                 level.val(data.out[2]);
@@ -120,13 +121,7 @@ $(document).ready(function () {
 
             }
         });
-        $.get("http://localhost:5000/sport/calorie", data => {
-				if (data.status == 100) {
-//					$("#calorie-value").text(parseInt(data.out*10)/10);
-					console.log(parseInt(data.out*10)/10);
-					calorie+=parseInt(data.out*10)/10;
-				}
-			});	
+        getCalorie();
     }
 
     function onWarmUpEnded() {
@@ -178,7 +173,8 @@ $(document).ready(function () {
                 //第二个视频的加载和播放
                 video.load();
                 video.play();
-                                sportsTime+=data.out[4];
+                //获取正式运动时长
+                sportsTime+=data.out[4];
 
                console.log(sportsTime);
               //  console.log(data.out[1]);
@@ -193,13 +189,7 @@ $(document).ready(function () {
              //   video1.bind("ended", $.onSportEnded);
             }
         });
-         $.get("http://localhost:5000/sport/calorie", data => {
-				if (data.status == 100) {
-//					$("#calorie-value").text(parseInt(data.out*10)/10);
-					console.log(parseInt(data.out*10)/10);
-					calorie+=parseInt(data.out*10)/10;
-				}
-			});
+        getCalorie();
         //console.log(level.val());
     }
 
@@ -258,6 +248,17 @@ $(document).ready(function () {
 
 
     }
+//獲取卡路里
+function getCalorie(){
+	         $.get("http://localhost:5000/sport/calorie", data => {
+				if (data.status == 100) {
+//					$("#calorie-value").text(parseInt(data.out*10)/10);
+					console.log(parseInt(data.out*10)/10);
+					calorie+=parseInt(data.out*10)/10;
+				}
+			});
+}
+
 
 //时间进度条
     function myTimeUpdate(maxDuration) {
