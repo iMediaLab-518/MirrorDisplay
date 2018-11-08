@@ -11,7 +11,13 @@ let S_ID;//scanning timeout id
 
 $(document).ready(function () {
 	fetchContent();
-	scanning();
+
+	$.get("http://localhost:5000/user",res=>{
+		if(res.status==100){
+			if(res.out==null){scanning();}
+			else{login(res.out[0]);}
+		}
+	});
 });
 
 function fetchDateTime() {
